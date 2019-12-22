@@ -1,0 +1,104 @@
+JDBC
+Spring JDBC
+ORM
+Spring ORM
+
+
+Spring Data : It is providing built-in methods to perform curd operation in Database.
+
+In Spring Data we have below 2 repositories
+
+1) CRUDRepository (curd operations)
+
+2) JPARepository (curd operations + pagination + sorting
+)
+
+
+
+public interface BookDtlsDao{
+
+	public boolean save(BookEntity book);
+
+	public boolean update(Book book);
+	
+	public BookEntity findByid(Integer id);
+
+	public List<BookEntity> findAll();
+
+	public boolean delete(Integer bookId);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+@Repository
+public interface BookDtlsDao extends 					CrudRepository<Entity,Serializable>{
+
+	
+}
+
+
+
+
+
+1) Create SpringBoot Application 
+
+2) Configuring Spring-data-jpa dependency in pom.xml file
+
+3) Configuring JDBC Driver dependency in pom.xml file
+
+4) Configuring DataSource details in application.yml file
+
+5) Create Entity class
+
+6) Create repository interface by extending spring-data repositories.
+
+
+
+
+
+
+
+save(Object entity)
+saveAll(Iterable<Object> entities)
+
+findById(Serializable id)
+findAllById(Serializable ids)
+findAll()
+
+delete(Object Entity)
+deleteById(Serializable id)
+deleteAllById(ids)
+deleteAll()
+
+update(Object entity)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

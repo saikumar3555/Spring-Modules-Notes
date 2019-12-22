@@ -1,0 +1,1048 @@
+Spring MVC & Spring Boot & Spring Rest (Annotations)
+-----------------------------------------------------
+Pre-Requiesites
+-------------------
+Spring Core is mandatory
+
+Servlets
+
+Jsp
+
+JSTL (core tag library)
+
+Deployment Process (Deployment, Re-deployment & hot deployment)
+
+WebServer & Application Server
+
+
+
+
+
+1.x ---- 7 modules
+--------------------
+core
+context
+aop
+jdbc/dao
+orm
+web and
+mvc
+
+2.x ---- 6 modules
+------------------
+core
+context
+aop
+jdbc/dao
+orm
+web-mvc
+
+
+
+3.x ------- 20+ modules
+
+4.x------- Messaging module is newly added
+
+5.x -------- web-flux (Reactive Programming)--- >min jdk 1.8
+
+
+
+Spring Web MVC
+--------------
+Using Spring Web MVC module we can develop below 2 types of applications
+
+1) Web applications (Customer to Business)
+	
+  Ex: IRCTC, Flipkart, Amazon, Zomoto, Swiggy, BookMyShow etc..
+
+2) Distrubuted Applications (Business to Business)
+	
+  Ex: MakeMyTrip--IRCTC, Flipkart---PaymentGateways, etcc.
+
+
+Spring MVC is Mainly working Based on 2 design patterns
+--------------------------------------------------------
+1) MVC Design Pattern
+
+2) Front Controller Design Pattern
+
+
+Model-1 & Model-2 Architecture
+
+Model-2 is called as  MVC Architecture.
+
+
+Why MVC ?
+----------
+To make our application classes loosely coupled.
+
+1) Presentation tier (html,jsp,css,js, images etc...)
+
+2) Web Tier (controllers) - req & res handling
+
+3) Business Tier (service or helper classes)
+
+4) Persistence Tier - database logic
+
+5) DTO VO  BO   Domain    POJO  
+
+6) entity (class mapped with db table)
+
+
+
+
+@WebServlet("/userServlet")
+public class UserFormServlet extends HttpServlet{
+
+    public void doPost(HttpServletReq req, HttpServletRes res){
+	   //capture form data
+
+	 String uname =  req.getParameter("uname");
+	 String email = req.getParameter("email");
+	 String phno = req.getParameter("phno");
+	 ....
+
+	 User u = new User( );
+	 u.setUname(uname);
+	 u.setEmail(email);
+	 u.setPhno(Long.parseLong(phno));
+
+	 RequestDispatcher rd = req.getRequestDisp("succ");
+   	 rd.include(req,res);
+
+   }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+Spring MVC Advantages
+----------------------
+1) Spring supports form binding objects
+	(form data will be stored into model objects)
+
+2) Spring supporting flexibility in form binding
+	(converts form data to corresponding data type)
+
+3) Spring supports multiple view technologies
+	(jsp, theamleaf, velocity, freemarker etc...)
+
+4) Spring provided form tag library to simplify forms development.
+
+5) Spring MVC supports I 18 N.
+
+6) Spring MVC components are clearly seperated with loosely coupling.
+
+7) Spring MVC supports Restful Services Development
+
+8) java to json and json to java will be converted by spring mvc using jackson api.
+
+9) java to xml and xml to java will done by spring mvc using jax-b.
+
+
+
+
+
+Spring MVC Components
+----------------------
+1) DispatcherServlet
+
+2) HandlerMapper
+
+3) Controller
+
+4) ModelAndView
+
+5) ViewResolver
+
+6) View
+
+
+Note : All above components are called as Web Components in Spring MVC.
+
+
+
+
+DispatcherServlet
+-----------------
+-> It is a predefined servlet class in Spring MVC module.
+
+-> It acts as FrontController in Spring MVC projects.
+
+-> It performs pre-process & post-process for every request.
+
+-> It creates WebApplicationContext to instantiate web components in the spring mvc application.
+
+
+HandlerMapper
+-------------
+HandlerMapper is used to identify Request Handler in web layer.
+
+HanlderMapper will identify which controller class method should execute for this user request.
+
+
+Controller
+----------
+Controllers are called as RequestHandlers.
+
+Controllers are mediators between model and view.
+
+Controllers will recieve request data from UI
+
+Controller will send response data to UI.
+
+Spring Controllers will returns response in below formats
+	 - ModelAndView (view pages)
+	 - Response Body
+
+Spring Controllers don't know about view technology in project.
+
+
+ModelAndView
+-------------
+
+It is a predefined class in Spring MVC.
+
+We can use ModelView as return type of controller methods.
+
+Model is used to store data which needs to send from controller to UI.
+
+In model, data will be stored in the form of Key and Value pair (Entry).
+
+Model can contain several Entries.
+
+View represents logical view name (only name of the file without file extension).
+
+
+
+ViewResolver
+-------------
+-> ViewResolver is a predefined Interface in Spring MVC module.
+
+-> It is having multiple implementation classes like
+
+	InternalResourveViewResolver
+	UrlBasedViewResolver
+	XmlViewResolver etc....
+
+-> This is used to identify physical location of views.
+
+	logical view name : index
+	prefix : /WEB-INF/views/
+	suffix : .jsp
+
+	prefix + logical view name + suffix
+
+	 /WEB-INF/views/index.jsp
+
+
+View
+----
+It is used to render model data on view page.
+
+In view files we will use model object keys to print corresponding value.
+
+
+
+
+
+
+
+First Spring MVC Project Steps
+-------------------------------
+1) Create Maven Web Project in IDE  
+
+2) Add below dependencies in pom.xml
+
+	a) servlet-api
+	b) spring web mvc
+
+3) Configure DispatcherServlet as frontController in project web.xml
+
+
+Note-1: By default web components configuration file name will be considered as below
+	
+	Syntax: DispatcherServletName-servlet.xml
+
+	DispatcherServletName=mvc
+		FileName should be  : mvc-servlet.xml
+
+	DispatcherServletName=dispatcher
+		FileName should be :dispatcher-servlet.xml
+
+
+Note-2: We can configure user-defined filename using ServletConfig object.
+
+<init-param>
+	<param-name>contextConfigLocation</param-name>
+	<param-value>/WEB-INF/web-beans.xml</param-value>
+</init-param>
+
+	ServletConfig obj ----- specific to one servlet.
+
+
+4) Create Controller class by extending from AbstractController
+  and override hanleRequestInternal() and return ModelAndView object.
+
+	mode ---> data in key & value format
+	view ---> logical file name
+
+5) Configuring handler mapper to map request with controller 
+   using pkg.SimpleUrlHandlerMapping.
+
+
+6) Configure ViewResolver as a Spring Bean in web-beans.xml with prefix and suffix
+
+		prefix ---> location of views
+		suffix ---> extension of views
+
+
+7) Deploy project and send request with URL in browser
+
+
+http://localhost:4040/MVCApp-1/welcome.htm
+
+http://localhost:4040/MVCApp-1/date.htm
+
+
+http://localhost:4040/MVCApp-1/greet.htm
+
+
+
+1) DispatcherServlet as front controller in web.xml file
+
+	<init-param>  --> contextConfigLocation
+
+2) Created Spring Controller class using AbstractController 
+
+	public ModelAndView handleRequestInternal(req,res);
+
+	Model - data in key & value format
+	View  -- logical file name (without preffix and suffix)
+
+3) Configured HandlerMapper to map request with Controller class
+	(SimpleUrlHandlerMapping)
+
+
+4) Configured ViewResolver with prefix and suffix to identify physical view files
+	(InternalResourceViewResolver)
+
+
+5) Deploy application and send request using url pattern.
+
+
+
+
+
+DispatcherServlet
+HandlerMapper
+Controller
+ModelAndView
+ViewResolver
+View
+
+
+
+@Controller
+public class WelcomeController{
+	
+	@RequestMapping("/wish.htm")
+	public String wish(Model model){   	      
+		model.addAttribute(key,value);		
+		return "index" ; //logical view name
+	}
+	
+	@RequestMapping("/greet.htm")
+	public String greet(Model model){
+		model.addAttribute(key,value);
+		return "index";	
+	}
+}
+
+
+
+
+http://localhost:9092/GreetApp/greet.htm
+
+http://localhost:9092/GreetApp/wish.htm
+
+
+In MVC application we should maintain 2 ioc containers.
+
+One IOC is responsible for managing web components 
+in project.
+
+Ex: Controller, HandlerMapper,ViewResolver,View etc..
+
+Note:DispatcherServlet will start WebAppCtxt to manage
+WebComponents in spring mvc project.
+
+
+-> To manage business components in project we need 
+seperate IOC container.
+
+-> Business components means service,dao,aop,tx etc....
+
+-> Container which manages business components is called 
+as Root Application Context.
+
+Note: WebComponents are dependent on business components.
+
+-> As web components are dependent on business components,
+business components should be created first.
+
+-> To create business components, root app ctxt should
+start first.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+XmlWebApplicationContext --- WebApplicationContext (IOC-1)
+ 
+
+
+Business Components
+--------------------
+Root Application Context --- ContextLoaderListener (IOC-2)
+
+
+
+
+
+
+
+
+
+
+
+Form Based applications using Spring MVC
+-----------------------------------------
+What is the purpose of form ?
+----------------------------
+
+In Web application, forms are used to capture data from end user.
+
+Ex : Login Form, Registration Form, Search Form etc.....
+
+Spring MVC supports Form Binding Object
+
+I.e -> Once form is submitted, form data will be captured and will be stored into model object.
+
+To support for form binding, spring mvc provided form tag library.
+
+---------------------------------------------------------------
+<%@ taglib uri="www.springframework/tags/form" prefix="form" %>
+
+<form:form />  -- To Represent Form
+<form:input /> --- Text Field
+<form:password /> --- Password
+<form:radioButton /> --- radio button
+<form:radioButtons /> -- for multiple radiobuttons
+<form:checkbox /> --- for one checkbox display
+<form:checkboxes /> --- for multiple checkboxes
+<form:hidden />  --- for hidden variables 
+<form:select /> --- for dropdowns
+<form:option /> -- for dropdown option display
+
+
+
+------------------------------------------------------------------
+Spring MVC Form Based application Development
+---------------------------------------------
+1) Create Maven Web Project
+
+2) Add below maven dependencies in project pom.xml file
+	1) servlet-api
+	2) spring-webmvc
+	3) project lombok
+
+3) Create Model class which is used to bind for Form data
+
+4) Create Controller class for request handling with below methods
+
+	a) One method for form display (displayForm())
+	b) One method for form submission (formSubmission())
+
+5) Create Views in WEB-INF folder using Spring Form Tag Library.
+
+6) Configure Web Components in Web Beans Configuration file
+   (File will be in WEB-INF folder)
+
+
+7) Configure DispatcherServlet as front controller in web.xml file
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td>
+ <form:radiobutton path="gender" label="Male" value="M" />
+ <form:radiobutton path="gender" label="Fe-Male" value="F" />
+</td>
+--------------------------------------------------------------
+
+List<String> genderValues = dao.getGenderValues();
+model.addAttribute("genders",genderValues);
+--------------------------------------------------------------
+<form:radiobuttons path="gender" items="${genders}" />
+
+------------------------------------------------------------------
+List<String> courses= dao.getCourses();
+
+model.addAttribute("courses",courses");
+------------------------------------------------------------------
+
+<form:select path="courses" items="${courses}" />
+
+<form:radiobuttons path="gender" items="${genders}" />
+
+<form:select path="qualification" items="${qualification}" />
+
+<form:select path="courses" items="${courses}" multiple="true" />
+
+<form:checkboxed path="timings" items="${timings}"  />
+
+-----------------------------------------------------------
+
+
+
+
+
+SQL Developer
+Toad
+
+
+
+
+
+
+CREATE TABLE GENDER_DTLS
+(
+   gender_id  number,
+   gender_name  varchar2(10),
+   primary key(gender_id)
+);
+
+CREATE TABLE COURSE_DTLS
+(
+  COURSE_ID NUMBER,
+  COURSE_NAME VARCHAR2(100),
+  PRIMARY KEY (COURSE_ID)
+);
+
+CREATE TABLE QUALIFICATION_DTLS
+(
+  QUALIF_ID NUMBER,
+  QUALIF_NAME VARCHAR2(50),
+  PRIMARY KEY(QUALIF_ID)
+);
+
+CREATE TABLE COURSE_TIMINGS
+(
+   TIMINGS_ID NUMBER,
+   TIMING VARCHAR2(50),
+   PRIMARY KEY (TIMINGs_ID)
+);
+
+insert into gender_dtls values(1,'Male');
+insert into gender_Dtls values(2,'Fe-Male');
+
+
+insert into course_dtls values(1,'Java');
+insert into course_dtls values(2,'Testing');
+insert into course_dtls values(3,'Devops');
+
+
+insert into QUALIFICATION_DTLS values(1,'Under Graduate');
+insert into QUALIFICATION_DTLS values(2,'Graduate');
+insert into QUALIFICATION_DTLS values(3,'Post Graduate');
+
+insert into COURSE_TIMINGS values(1,'Morning');
+insert into COURSE_TIMINGS values(2,'Afternoon');
+insert into COURSE_TIMINGS values(3,'Evening');
+
+
+1) Presentation Layer (UI)--- JSP  (/WEB-INF/views/)
+
+2) Web Layer (Controllers, HandlerMapper,ViewResolver)
+	(dispatcher-servlet.xml) - web components scan
+
+3) Service Layer (Service interfaces & Impl )
+
+4) Persistence layer (Dao interfaces & Impl )
+
+	(rootAppCtxt.xml)-service & dao classes scan
+
+	(web.xml)--ctxt-param, listener, FC, load-on-startup
+
+
+
+
+
+
+
+
+
+
+
+
+
+			con = ConnectionManager.getConnection();
+			boolean flag = true;
+
+			if (book.getBookName() != null && !book.getBookName().equals("")) {
+				if (flag) {
+					bookSearchSql.append(" WHERE BOOK_NAME='" + book.getBookName() + "'");
+					flag = false;
+				} else {
+					bookSearchSql.append(" AND BOOK_NAME='" + book.getBookName() + "'");
+				}
+			}
+
+			if (book.getBookPrice() != null && !book.getBookPrice().equals("")) {
+				if (flag) {
+					bookSearchSql.append(" WHERE BOOK_PRICE=" + book.getBookPrice());
+					flag = false;
+				} else {
+					bookSearchSql.append(" AND BOOK_PRICE=" + book.getBookPrice());
+				}
+			}
+
+			if (book.getAuthorName() != null && !book.getAuthorName().equals("")) {
+				if (flag) {
+					bookSearchSql.append(" WHERE AUTHOR_NAME='" + book.getAuthorName() + "'");
+					flag = false;
+				} else {
+					bookSearchSql.append(" AND AUTHOR_NAME='" + book.getAuthorName() + "'");
+				}
+			}
+
+			System.out.println(bookSearchSql.toString());
+
+			pstmt = con.prepareStatement(bookSearchSql.toString());
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Book b = new Book();
+
+				b.setBookId(rs.getInt("BOOK_ID"));
+				b.setBookName(rs.getString("BOOK_NAME"));
+				b.setAuthorName(rs.getString("AUTHOR_NAME"));
+				b.setBookPrice(rs.getDouble("BOOK_PRICE"));
+
+				books.add(b);
+			}
+
+---------------------------------------------------------------
+Basic Search : Retriving records based on primary key
+
+Advanced Search	: Retriving records based on search criteria
+
+
+
+
+
+
+Advanced Search in web applications
+-----------------------------------
+
+
+
+
+
+
+1) Using flag we can create dynamic sql query 
+
+2) Using where cluase in base query itself
+	where 1=1
+
+
+
+
+Note: We can't debug Java Script code using Eclipse Debugging.
+
+To debug java script code, we need to use Developer tools in browser. 
+
+To open developer tools F12 is the keyboard shortcut.
+
+In Developer Tools click on Debugger menu and choose a breakpoint in java scirpt code from where you need to start debugging.
+
+F10 keyboard we can use to move next line in browser debugging.
+
+Note: When we modify java script code, then we have to reload the page in browser. (Ctrl + F5  or Ctrl + R )
+
+Note: Delete cookies in browser.
+
+
+100 % java based CONFIGURATION IN Spring MVC application
+--------------------------------------------------------
+
+web.xml file --- > WebInitializer Class
+
+dispatcher-servlet.xml ----> WebConfig class
+
+rootAppCtxt.xml ---> AppConfig class
+
+
+
+
+
+
+
+
+
+<head>
+<script>
+      function validateSearchForm(){
+		
+   	var bname = document.getElementById('bookName').value;
+	
+	if(banme == ''){
+		alert("Please Enter BookName");
+		return false;
+	}
+	
+	return true;
+
+      }
+  
+</script>
+</head>
+
+
+
+boolean preHandle()
+	 
+	 --> Once request is recieved by DS then preHandle
+	 ---> true ---> DS will process request
+	 ---> false ---> DS will not process request
+
+void  postHandle()
+	---> Before sending response from DS to browser
+
+
+
+
+
+
+
+ExecutionTimerInterceptor
+
+BrowserCheckingInterceptor
+
+BusinessHoursCheckingInterceptor
+
+
+1) Create User Defined Interceptor by overriding preHandle and postHandle methods
+
+2) Register user-defined interceptor with WebMvcConfigurer
+	
+	registry.addInterceptor(new ExecutionTimer());
+
+
+
+
+RestController : Distributed Component ( B 2 B )
+
+		@RestController
+
+ -> RestController methods will return Response data directley
+
+ @RestController
+ public class WelcomeRestController{
+	
+	@GetMapping("/welcome.htm")	
+	public String getMsg(){
+		return "Hello";
+	}
+
+	@PostMapping("/adduser.htm",consumes={"application/json"})
+	public String addUser(@RequestBody User user){
+
+		return "user added";
+	}
+ }
+-----------------------------------------------------------
+
+
+Controller : Web Component ( C 2 B )
+	
+-> @Controller will mark java class as spring controller
+
+-> Controller methods will return model and view 
+
+
+@Controller
+public class GreetController{
+
+    @RequestMapping("/greet.htm")   
+    public String greet(Model model){
+	model.addAttribute("msg","Hello");
+	return "greet";
+    }
+
+
+    @RequestMapping("/validateEmail.htm")
+    public @ResponseBody String checkEmail(){
+ 
+	String status =  "U";
+     
+	return status;
+    }
+
+}
+------------------------------------------------------------------
+
+
+
+
+
+
+
+What is difference between @RequestBody and @ResponseBody
+----------------------------------------------------------
+
+@ResponseBody : It is used to specify response type from controller method.
+
+
+
+
+
+
+
+
+RestController:  Distributed Component
+			
+		will return response directley
+
+
+Controller : Web Component
+	     will return "model and view"
+	     will return response directley using @ResponseBody
+
+
+
+
+
+
+
+Reports Generation in Spring MVC
+--------------------------------
+
+Generating Excel Report
+
+Generating PDF Report
+
+
+
+		Apache POI api
+java-------------------------------------------Excel
+
+		IText api
+java ----------------------------------------PDF
+
+
+Apache POI and IText apis are open source.
+
+
+Spring framework having direct support for POI and IText apis.
+
+
+POI ====> AbstractXlsView --- > buildExcelDocument()
+
+IText ===> AbstractPdfView----> buildPdfDocument()
+
+
+Paragraph
+
+Table
+
+
+
+
+
+
+<form action="singleFileUpload" 
+      enctype="multipart/form-data"
+      method="post" >
+  Select File : <input type="file" name="file"/>
+  <input type="submit" value="Upload"/>
+</form>
+-----------------------------------------------------------------
+@Controller
+public class FilesController{
+  
+  @RequestMapping(value="/singleFileUpload",
+		  method=RequestMethod.POST
+  ) 	
+  public String singleFileUpload(MultipartFile file, Model model){
+	
+	String fname = file.getOriginalFileName();
+	if(fname!=null){
+		//logic to upload
+	}else{
+		//error msg
+	}
+  }
+
+  @RequestMapping(value="/singleFileUpload",
+		  method=RequestMethod.POST
+  ) 	
+  public String multiFileUpload(MultipartFile[] file, Model model){
+	
+	String fname = file.getOriginalFileName();
+	if(fname!=null){
+		//logic to upload
+	}else{
+		//error msg
+	}
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+MultiPartFile file
+
+byte[] fileData = file.getBytes();
+
+Path path = Paths.get("Directory-Path",file.getOriginalFileName());
+
+Files.write(path,fileData);
+------------------------------------
+MultiPartFile[] files
+
+
+for(MultipartFile file : files){
+
+byte[] fileData = file.getBytes();
+
+Path path = 
+
+     Paths.get("Directory-Path",file.getOriginalFileName());
+
+	Files.write(path,fileData);
+
+}
+
+
+
+
+
+Single File Upload --- MultiPartFile  file;
+
+Multi File Upload ---- MultiPartFile[ ]  files;
+
+
+String destination ="D://Files//";
+
+public String fileUpload(@RequestParam("file") MultiPartFile file,
+							Model model){
+
+	String fileName =  file.getOriginalFileName();
+
+	if(fileName!=null && !fileName.equals()){
+		
+		byte[] fileData = file.getBytes();
+		
+		Path path = Paths.get(destination,fileName);
+
+		Files.write(path,fileData);
+		
+	}
+
+}
+
+
+
+
+
+
+
+
+Spring MVC
+Spring MVC Advantages
+Model-1 and Model-2(MVC) Architecture
+Front Controller Design Pattern
+Spring MVC Architecture
+Dispatcher Servlet
+HandlerMapper (SimpleUrlHandlerMapping & ReqMappingHandlerMapping)
+Controller(AbstractController, @Controller, @RestController)
+RequestMapping with URL (@RequestMapping)
+ViewResolver (XmlViewResolver, InternalResViewResolver)
+ModelAndView
+WebApplicationContext & RootApplicationContext
+ServletConfig
+ServletContext
+ContextLoaderListener
+Request Redirection (redirect:buildDashboard)
+Form Binding Object (modelAttribute & path)
+Search Forms Development
+Spring Form Tag Library
+@ModelAttribute
+Interceptor
+File(s) Uploading (enctype="multipart/form-data", MultiPartFile)
+Java Config Approach(WebInitializer, AppConfig, WebConfig)
+POI & IText Reports (AbstractXlsView, AbstractPdfView)
+RestController vs Controller
+Exception Handling in Spring MVC (local handling & global handling)
+Double Posting Problem in Spring MVC (P-R-G)
+HttpServletRequest and HttpSession in Spring MVC
+
+
+Spring JDBC (3 days)
+
+*Spring ORM (xml & annotation) - 3 days
+
+Spring AOP(4-5 days)
+
+Spring Boot & Spring Data & Batch & Security & MicroServices
+
+
+
+
+
+
+
+
+

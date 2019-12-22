@@ -1,0 +1,2346 @@
+Spring Framework
+================
+
+Pre-Requisites
+--------------
+1) Core Java
+	 - java.lang package
+
+	 - OOPS
+		- Inheritence
+		- Polymorphism
+		- Encapsulation
+		- Abstraction
+
+	 - Collections	
+		- List
+		- Set
+		- Map
+		- Properties
+		- Comparator & Comparable
+		- Enumeration, Iterator and ListIterator
+	 - I/O Streams
+	 - Exception Handling
+	 - Multi Threading
+	 - Annotations
+	 - Generics
+	 - Java 8 features
+	 - Reflection API
+
+Advanced Java
+=============
+JDBC API
+	- Driver
+	- DriverManager
+	- Connection
+	- Statement & Pstmt & Cstmt
+	- ResultSet
+	- DatabaseMetaData, ResultMetaData etc...
+	- Connection Pooling
+
+Servlets
+	 - Web Application
+	 - WebServer & App Server
+	 - Application Deployment process
+	 - Servlet, ServletConfig, ServletContext
+	 - Servlet Life Cycle
+	 - ServletRequest, ServletResponse
+	 - GenericServlet, HttpServlet
+	 - RequestDispatcher
+	 - HttpSession
+	 - Filters & Listeners
+JSP
+	 - Why Jsp
+	 - Jsp Life cycle
+	 - Jsp Implicit objects
+	 - directives, tags, custom tags etc..
+	 - JSTL
+
+Databases
+---------
+SQL knowledge
+
+
+
+
+Webservice , Restful Services & Hibernate --- parallely you can learn.
+
+============================================================
+
+Introduction (7 days)
+======================
+What is Framework
+Why we need frameworks
+Types of Frameworks
+Why Spring became very popular ?
+Comparision Spring with Other frameworks
+Advantages of using Spring in project
+Spring Architecture
+Spring Modules
+
+
+Spring Core (30 concepts) (20 days)
+	
+Spring Web MVC (10 days)
+
+Spring Boot & micro services (7 days)
+
+Spring AOP (7 days)
+
+Spring JDBC (4 days)
+
+Spring Tx (2 days)
+
+Spring ORM (4 days)
+
+Spring Data ( 2 days)
+
+Spring Rest (2 days)
+
+Spring Security(3 days)
+
+SPring Batch (3 days)
+
+Spring Cloud (3 days)
+====================================
+70 days (2.5 months)
+====================================
+
+Duration : 2.5 months (+/- 10 days)
+
+Daily Timings : 11:00 AM - 1:00 PM (Monday-Monday)
+
+Running Notes : Not allowed
+
+No recordings & No photos & No videos
+
+================================================================
+
+
+facebook group name: Ashok IT School
+
+email id : ashok.javatraining@gmail.com
+
+-------------------------------------------------------------------
+
+Java : Programming language. Providing synatxes for us. We can develop CUI and GUI applications using this.
+
+Jdbc : Jdbc is an api to connect with Databases.
+
+JEE
+====
+Servlets & JSP : These technologies are used to develop web applications.
+
+
+Frameworks
+===========
+Hibernate : Hibernate is a ORM framework. To develop Persistence layer. It is advanced to JDBC api.
+
+
+Strutus 1./2.x : These are Java based web application frameworks. These are used to develop web applications. (Out dated).
+
+JSF : Java Server Faces
+
+Spring : Application development framework.
+
+
+Distributed Technologies
+==========================
+
+EJB : Enterprise java beans. Used to develop enterprize apps. 
+(Out dated)
+
+Webservices & Restful Services : These are distributed technologies. Using these technologies one application can communicate with another application.
+
+
+
+What is framework ?
+-------------------
+Framework is a semi developed software which provides some common 
+logics which are required for several applications development.
+
+Ex : Connection opening & closing, query execution, capture form data,  sending email, generating excel report, generating pdf report, sending msg to mobile, copy data from one object to another object etc......
+
+Frameworks will be released in the form of jar files
+
+jar files contains .class files
+
+.class files contains common logics
+
+Note : In order to use framework in project development, then we should download and add framework relted jars to project build path.
+
+Instead of we are downloading and setting buid path , we can use build tools to automate this process like Maven or Gradle
+
+
+Advantages of frameworks
+=========================
+1) Code Re-Usability
+
+2) We can avoid boiler plate code
+
+3) Less time for development
+
+4) Less of no.of issues in project.
+
+Dis-Advantages
+===============
+1) When we use frameworks in project development, performance of application will be bit slow.
+
+
+Note: When we compare advantages and dis-advantages of frameworks , advantages are more hence frameworks are having lot of demand in companies.
+
+
+Types of Frameworks
+-------------------
+1) Web frameworks : Used to develop only web components
+
+	Ex : Struts 1.x/2.x, JSF etc...
+
+2) ORM frameworks : Used to developer Persistent components
+
+	Ex : Hibernate, JPA, IBatis, MyBatis, TopLink etc...
+
+3) Application Development Framework : Used to develop end to end project (web,service,persistent components).
+		
+	Ex : Spring
+
+
+
+
+Layered architecture
+--------------------
+Now a days every project is getting developed using layered architecture.
+
+Below are the layers that we can see in real time projects.
+----------------------------------------------------------
+1) Presentation Layer
+2) Web Layer
+3) Service Layer
+4) Persistence Layer
+
+
+1) Presentation Layer :
+----------------------
+Presentation layer contains user interface (UI)
+
+Ex : Login form, registration, forgot password, search etc...
+
+Technologies for UI Development 
+--------------------------------
+HTML, JSP, Java Script, CSS, JQuery, Ajax , Angular JS etc...
+
+
+2) Web Layer : 
+--------------
+1) In this layer we will develop web components. 
+2) Web components are also called as Request Handlers. 
+3) Request Handlers are also called as Controllers in frameworks.
+
+Role of Web components in Project : 
+-----------------------------------
+a) Handling user request
+b) Capturing form data
+c) Calling Service or business layer methods
+d) Sending Response to clients.
+e) Controllers acts as Delegator.
+
+Technologies to develop web components
+--------------------------------------
+Servlets, Jsp, Struts 1.x/2.x, JSF, EJB, SPring and Play Framework etc
+
+
+3) Service or Business or Helper Layer
+--------------------------------------
+As part of this layer we will write business logics like below
+
+a) Server side validations
+b) Password encryption and de-cryption
+c) Sending Emails using java mail api
+d) Sending OTP using twillo api
+e) Generating Excel report using apache poi api
+f) Genering pdf report using itext or aspose api.
+g) Copying data from model obj to entity obj and vice versa.
+h) Integration tier logics like soap clients and rest clients.
+
+Role of service layer
+----------------------
+a) Execute business logic
+b) Call persistence layer component methods
+
+Technologies for Service layer development
+------------------------------------------
+Java, Spring, Third party apis .....
+
+3) Persistence layer
+--------------------
+a) This layer contains persistent components
+b) Persistent components are responsible for only Database communication.
+c) Persistent components are called as dao s or repositories.
+
+DAO - Data Access Object
+
+Technologies for Persistence layer development
+----------------------------------------------
+Java Jdbc, ORM frameworks , Spring JDBC, Spring ORM, Spring Data
+
+
+
+
+Spring Framework
+Author: Rod Johnson
+Year : 2003
+Initial Version : Spring 1.x
+.
+Spring 3.x (So Many changes in Spring )
+
+Current Version : Spring 5.x
+
+Pivotal team
+
+
+web frameworks : web components    ----- struts
+
+orm frameworks : persistence layer ---- hibernate 
+
+app development frameworks : Everything ---- spring
+
+Spring Author : Rod Johnson
+
+Advantages of Spring Framework
+------------------------------
+1) Using spring we can develop both standalone and web apps.
+
+2) Spring is not a single framework. It is collection of modules.
+
+3) Spring will not force you to use all modules. Whatever is required for project take only that module from spring.
+
+4) Spring is a Versatile framework. Spring can be integrated with any framework which is related to java.
+
+5) Spring is a non-invasive framework. Spring will not force programmers to extend or implement any predefined classes or interfaces.
+
+Note: Struts will force programmers to extend properties from Action class hence Struts is called as Invasive framework.
+
+
+6) Spring supports POJO and POJI model programming. Our classes will be loosely coupled with Spring Framework. In future if we don't want to use spring just we need to remove spring jars from build path and no need to touch source code.
+
+
+Note: If we use struts framework, our application classes will be tightly coupled with struts framework. Removing Struts framework from the project is not easy bcz every class is tightly coupled with Action class.
+
+Action is a predefined class in Struts framework.
+
+
+Spring Architecture
+-------------------
+Spring architecture changed from version to version.
+
+Intial Version of Spring is 1.x. It contains total 7 modules.
+
+Spring 2.x contains 6 modules.
+
+Spring 3.x contains almost 20 modules. (So many annotations introduced) in 3.x version.
+
+In Spring 4.x "Messaging" module got added
+
+In Spring 5.x Reactive programming is added.
+
+Current Version of Spring is 5.x. It contains approxmately 20-30 modules.
+
+
+Spring 1.x Modules
+------------------
+1) Spring Core
+2) Spring Context
+3) Spring DAO
+4) Spring ORM
+5) Spring AOP
+6) Spring Web and 
+7) Spring Web MVC
+
+Note : In Spring 2.x version Spring Web and Spring Web MVC are combined as Single module hence we have total 6 modules in Spring 2.x version.
+
+
+Spring Core
+-----------
+-> This is base module for spring framework.
+
+-> It is providing fundamental concepts IOC & DI in Spring       framework.
+
+	IOC : Inversion of control
+
+	DI : Dependency Injection.
+
+-> Using this core module we can develop stand-alone applications.
+
+-> All other modules in spring are depeloped on top of spring    core module.
+
+Spring Context:
+--------------
+-> Spring context module deals with Configuration in Spring applications.
+
+-> It is used for packages scanning and classes loading.
+
+
+Spring DAO:
+-----------
+-> DAO means data access object.
+-> It is used to develop persistence layer using spring framework.
+-> This is also called as Spring JDBC.
+-> This Spring DAO module is developed on top of java jdbc.
+-> This module resolved boiler plate code writing.
+
+
+Q) Can we call Spring JDBC as replacement for java jdbc ?
+
+Ans) No, Spring jdbc is complementing java jdbc.
+
+
+Spring ORM: (Object Relational Mapping)
+---------------------------------------
+-> To overcome drawbacks of jdbc, ORM frameworks came into market.
+
+-> In ORM frameworks also we need to write some boiler plate code.
+
+-> To avoid boiler plate code in ORM frameworks, spring provided Spring ORM module.
+
+-> Spring ORM module will support for several orm frameworks.
+
+-> Spring ORM module is developed on top of existing ORM frameworks.
+
+Spring AOP (Aspect Oriented Programming):
+-----------------------------------------
+-> Our applications contains below 2 types of logics
+	
+	1) Primary logic
+	2) Secondary logic
+
+	Primary logic : Business logic
+	Secondary logic : Helper logic
+
+-> If we write both primary and secondary logics together then tightly coupling problem will occur hence it is not recommended.
+
+-> To seperate primary and secondary logics we will use Spring AOP module in project.
+
+Spring Web and Spring Web MVC
+-----------------------------
+-> Spring Web and MVC modules are used to develop web based applications using Spring framework based on MVC design pattern.
+
+-> Spring web MVC module will use FrontController design pattern to process client requests.
+
+-> Spring MVC supports for multiple view technologies like html, jsp, theamleaf, velocity and freemarker etc..
+
+-> Spring MVC supports for form binding object. Form data can be binded to model objects automatically.
+
+-> Spring Web MVC supports for Distributed Components development.
+   (Both and soap and Rest).
+
+
+
+
+
+
+Spring 1.x is having 7 modules
+-------------------------------
+Spring core , spring context, spring aop, spring dao, spring orm, spring web, spring web mvc
+
+Spring 2.x is having 6 modules
+--------------------------------
+spring web and web mvc combined as single module
+
+Spring 3.x is having almost 2 modules
+--------------------------------------
+All above 6 modules are divied into 20 sub modules
+
+In Spring 4.x "messaging" module got added
+-------------------------------------------
+
+In Spring 5.x new features are added but no changes to spring
+architecture diagram
+-------------------------------------------------------------
+
+
+
+Spring Core
+-----------
+-> This is base module of Spring framework
+
+-> This is providing IOC & DI.
+
+
+
+
+
+Projects are used to reduce human efforts.
+
+Project contains several classes.
+
+All the classes will not play same role in project.
+
+Based on role the classes are playing they can be divided into below 3 types
+
+	1) POJO
+	2) Java bean
+	3) Component
+
+POJO : Plain old java object
+----------------------------
+A java class which can be compiled with only jdk software then we can call that class as a POJO.
+
+POJO classes shouldn't extend or implement any api or framework related classes and interfaces.
+
+Ordinary java class without any special effects.
+
+These classes are used to transfer data from one layer to another layer in object format.
+
+We can write business logic also in POJO classes.
+
+Ex:
+---
+
+
+public class Demo{
+
+}
+
+public class Demo1{
+    int i;
+    int j;
+    Double d;
+    String name;
+}
+
+public class Demo2 implements Callable{	
+	//call()
+}
+
+public class Demo3 extends Thread{
+
+}
+
+public class Demo4 implements Serializable{
+
+}
+
+public class Demo5 implements Servlet{
+
+}
+
+
+
+Java Bean
+----------
+The class which follows bean specification rules is called as java bean class.
+
+Rules
+-----
+1) Class should be public 
+2) Class should contain public 0-param constructor.
+3) Every variable should be private
+4) Every variable should contain public setter & getter methods
+5) Recommended to implement java.io.Serializable interface.
+
+- > Java Bean classes are used to exchange data among multiple layers.
+
+public class User implements java.io.Serializable{
+
+	public User(){	
+	}
+
+	private Integer id;
+
+	public void setId(Integer id){
+		this.id = id;
+	}
+	public Integer getId(){
+		return id;
+	}
+}
+
+
+Component
+---------
+The classes which contains business logic are called as Component classes.
+
+Ex : Controller, Service and DAO etc..
+
+
+When we have several classes like above, all the classes are dependent on some other classes to complete execution.
+
+Q) How one class can talk to another class in java ?
+
+A) We have 2 ways to communicate from one class to another class.
+
+	1) IS-A (Inheritence)
+	2) HAS-A (Composition)
+
+
+Inheritence
+-----------
+Extending properties from one class to another class is called inheritence
+
+The main goal of Inheritence is re-usability
+
+
+Dis-Advantages
+--------------
+-> Classes will be tightly coupled
+
+-> Our class can't extend properties from any other class in 	future
+
+-> Code is not easily testable.
+
+To solve Inheritence problems, we can go for Composition
+
+Composition
+-----------
+The process of creating object for a class.
+
+
+Composition Dis-Advantages
+----------------------------
+1) Classes are tightly coupled
+
+2) Code is not easily testable.
+
+3) For all classes we can't use new operator to create object.
+	Ex : abstract classes and singleton classes
+
+4) Some classes will contain complex instantiation process
+
+5) Sometimes we don't know class name to instantiate.
+
+
+Inheritence and Composition concepts are used to talk from one class to another class.
+
+But Both approaches are having dis-advantages.
+
+Factory Design Pattern
+======================
+Design patterns are used to provide solutions for common problems which are occuring in several projects.
+
+
+
+Calendar c = new Calendar() ; // invalid bcz it is abstract
+
+Calendar.newInstance() ; //
+
+
+
+
+
+
+
+
+
+
+GIT Repository URL : 
+
+https://github.com/Ashok-IT-School/26-Spring-11AM
+
+
+
+
+
+
+class Demo{
+  public static void display(ArrayList al){
+	//logic
+	sysout(al);
+  }
+ 
+}
+---------------------------------------------------------------
+class Test{
+	psvm(String... ar){
+		LinkedList ll = new LinkedList();
+		ll.add(10); ll.add(20); ll.add(30);
+		Demo.display(ll);
+
+		ArrayList al = new ArrayList();
+		al.add(30), al.add(40); al.add(50);
+		Demo.display(al);
+	}
+}
+------------------------------------------------------------
+
+
+
+class Demo{	
+	public List getData(){
+		//logic
+		ArrayList al = new ArrayList();
+		al.add(20);
+		return al;
+	}
+}
+------------------------------------------------------
+List list = getData();
+
+
+
+
+
+The process of injecting dependent object into target object is called Dependency Injection (DI).
+
+We can achieve dependency injection in 2 ways.
+
+1) Setter Injection (SI)
+
+2) Constructor Injection (CI)
+
+Setter Injection : Injecting dependent object into target object by calling target class setter method.
+
+		Car c = new Car();
+		c.setEng(eng);
+
+Constructor Injection : Injecting Dependent Object into target object by calling target class constructor.
+
+		Car c = new Car(eng);
+
+
+
+
+
+
+
+
+IOC : Inversion of control
+
+IOC is a principle which is used to manage and colloborate dependencies among objects in application.
+
+
+Q) can ioc manage and colloborate any two class objects ? 
+
+Ans) No - If your classes folollow some rules and guidelines then only ioc can manage and colloborate your objects.
+
+
+If we need to use IOC for Dependency Injection for our classes then our classes should follow Strategy Design Pattern.
+
+Strategy Design Pattern Rules
+-------------------------------
+1) Favour composition over inheritence
+
+2) Always code to interfaces instead of concrete implementations
+
+3) Code should be open for extension and should be closed for modification.
+
+
+
+
+
+Spring Environement Setup
+-------------------------
+
+Softwares Required
+------------------
+1) Maven
+2) IDE
+3) JDK 8 or higher
+4) Spring jars 
+5) Commons-Logging jar
+
+
+
+
+We can start IOC Container in 2 ways
+
+1)BeanFactory
+
+2)ApplicationContext
+
+
+BeanFactory factory = new XmlBeanFactory(Resource res);
+
+ClassPathResource
+FileSystemResource
+
+
+
+
+
+
+Both are interfaces only.
+
+BeanFactory  factory = new XmlBeanFactory(Resource resource);
+
+String fileName="Beans.xml";
+Resource resource = new ClassPathResource(fileName);
+BeanFactory factory = new XmlBeanFactory(resource);
+
+
+
+
+//loading xml file from classpath
+Resource resource  = new ClassPathResource("Beans.xml");
+
+BeanFactory factory = new XmlBeanFactory(resource);
+--------------------------------------------------------------
+
+//loading xml file from file system
+Resource resource =
+	 new FileSystemResource ("D://Config/Beans.xml);
+BeanFactory factory = new XmlBeanFactory(resource);
+
+----------------------------------------------------------------
+
+
+<id>100</id>  ------> Simple Element
+
+
+<person>
+	<name>John</name>
+</person>
+----------------------
+name ------ > simple element
+person -----> compound element
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Book>
+   <name>Spring</name>
+   <author>Rod Johnson</author>
+</Book>
+------------------------------------------
+name & author -----> Simple Elements
+Book -------------->Compound Elements
+
+
+1) Wellformness : Will talk about can we read that xml or not?
+2) Validness : Will talk about can we use that xml or not?
+
+
+Q) How can we say xml is wellformed ?
+
+Rule-1 : Xml Should contain only one root element
+Rule-2 : Every start tag should contain end tag.
+
+If xml follows above 2 rules then we can say that xml is well-formed. If xml is wellformed humans & machines can read that xml.
+
+<person>
+  <id>101</id>
+  <name>Raju</name> 
+   <adress>
+      <city>Hyd</city>
+       <state>TG</state>
+   </adress>
+</person>
+--------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+Q) How can we say xml is valid ?
+
+
+
+
+<order>
+<item>
+  <code>101</code>
+  <quantity>abc</quantity>
+</item>
+<address>
+  <city>Hyd</city>
+  <state>TG</state>
+  <zip>500081</zip>
+</address>
+</order>
+======================================================================
+Xml
+---
+
+XML stands for extensible markup language
+
+WHich is used to store the data & transfer the data
+
+Xml will represent the data in elements format.
+
+1) Simple Element
+
+The element which contains the data.
+
+	<id>101</id>
+
+
+2) Compound Element 
+	
+The element which contains child element(s) is called as Compound element.
+
+<name>
+   <first-name>Cedrone</first-name>
+   <last-name>Charles</last-name>
+</name>
+-----------------------------------------------------------------
+
+
+1) Wellformness : can we read it or not ?
+
+a) XMl Should contain only one root element
+b) Every start tag should contain end tag.
+
+
+2) Validness : can we use it or not ?
+
+XML validitity will be decided by dtd or xsd.
+
+DTD : Only structure validation
+
+XSD : Structure + Data type validation
+----------------------------------------------------------------------
+
+Parser : A program which reads xml file data in xml style.
+	
+xml style : ignoring meta data and reading actual data.
+
+--------JAX-P API-------------------
+SAX
+DOM
+STAX
+----------------------------------------------
+
+
+------------------------Beans.xml------------------------
+<beans>
+
+   <bean   id="a"   class=""> --- Bean Definition
+
+   <bean id="b"  class="" >  -- - Bean Definition
+
+</beans>
+----------------------------------------------------------
+
+ClassPathResource 
+
+FileSystemResource
+------------------------------------------------------------------
+
+
+1) BeanFactory
+
+	Resource resource = 
+		new ClassPathResource("com/maruti/cfg/Beans.xml);
+
+	BeanFactory factory = 
+			new XmlBeanFactory(resource);
+---------------------------------------------------------------------
+
+
+
+
+
+
+
+Resource resource = new ClassPathResource("com/cfg/Beans.xml");
+BeanFactory  factory = new XmlBeanFactory(resource);
+factory.getBean("qbc");
+---------------------------------------------------------------
+1) Loads Beans.xml file from given location
+
+2) Give that xml file as input to XmlBeanFactory
+
+3) Parser check will for welformness and validness
+
+4) BeanFactory will load all beans defintions from xml file and 
+will store BeansMetaData (in memory).
+----------------------------------------------------------------------
+
+Resource res = new ClassPathResource("com/cfg/Beans.xml");
+BeanFactory factory = new XmlBeanFactory(res);
+--------------------------------------------------------------------
+
+factory.getBean("car");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Object obj = factory.getBean("paymentCtx");
+PaymentContext ctxt = (PaymentContext) obj;
+-------------------------------------------------------------
+PaymentContext ctxt = (PaymentContext) factory.getBean("paymentCtx");
+-------------------------------------------------------------------PaymentContext ctxt = 
+               factory.getBean("paymentCtx",PaymentContext.class);
+--------------------------------------------------------------------
+
+
+Constructor Injection:
+----------------------
+INjecting dependent class object into target class by calling 
+target class constructor is called as Constructor Injection(CI).
+
+
+public class Car {
+	
+    private IEngine  eng=null;
+
+    public Car(DieselEng eng){
+	this.eng = eng;
+    }
+}
+
+new Car(); //invalid
+new Car(new PetrolEngine());
+
+
+------------------------------------------------------------------
+<bean id="car"  class="pkg.Car">
+  <constructor-arg name="eng" ref="petrolEng" />
+</bean>
+----------------------------------------------------------------
+setter method : setter injection
+
+
+<property name="" ref="" />
+
+name - variable name
+ref - bean id
+
+target obj will be created first in SI
+
+partial dependency injection is possible in SI
+
+
+
+
+constructor of target
+
+<constructor-arg name="" ref="" />
+
+dependent obj will be created first in CI
+
+Partial Dependency is not possible in CI.
+
+
+
+
+
+class Person {
+
+   Integer personId; //101
+   String personName; //john
+   Integer personAge; //25
+
+  //setter methods required
+
+}
+----------------------------------------------
+<bean id="person" class="pkg.Person">
+  <property name="personId" value="101" />
+  <property name="personName" value="John"/>
+  <property name="personAge" value="25"/>
+</bean>
+
+
+
+public Car(IEngine eng){
+
+}
+
+public MessageWriter(IMsgFormatter formatter){
+
+
+}
+
+
+PaymentContext(IPayment payment){
+
+}
+
+public XmlBeanFactory(Resource res){
+
+}
+
+
+
+Person p = new Person();
+
+System.out.println(p); //com.hps.beans.Person@2ed94a8b
+System.out.println(p.toString());com.hps.beans.Person@2ed94a8b
+
+
+
+-================================================
+
+public String toString(){
+
+ return 
+  this.getClass().getName()+"@"+Integer.toHexString(this.hashCode());
+
+}
+
+com.hps.Person@e979l96
+
+
+
+Injecting value to a variable ==> we will use value attribute
+
+<property name=""  value="" />
+
+Injecting object to a varibale ===> we will use ref attribute
+
+
+<property name="" ref="" />
+=======================================================================
+
+
+private int sno; //1
+private Integer personId; /101
+private String personName; //John
+
+private IEngine eng; // de or pe
+private IPayment payment; //credit or debit
+private IMsgFormatter formatter; //html or xml
+----------------------------------------------------
+
+private List<String> places;
+
+------------------------------------------------------------------------
+
+Collection Injection
+--------------------
+List
+Set
+Map and
+Properties
+
+
+private List<String> places;  //java.util.ArrayList
+
+<property name="places">
+   <list>
+	<value>Hyd</value>
+	<value>Pune</value>
+   </list>
+</property>
+
+-------------------------------------------------------
+private Set<Long> phnos; //java.util.LinkedHashSet
+
+<property name="phnos">
+  <set>
+	<value>0808080</value>
+	<value>9797979</value>
+  </set>
+</property>
+--------------------------------------------------------
+private Map<String,Long> projectCodes; //java.util.LinkedHashMap
+
+<property name="projectCodes">
+	<map key-type="" value-type="">
+		<entry key="" value="" />
+		<entry key="" value""/>
+ 	</map>
+</property>
+---------------------------------------------------------------------
+
+private Properties emails;
+
+<property name="emails">
+ <props>
+	<prop key="personal">iyiy</prop>
+	<prop key="ofc"></prop>
+ </props>
+</property>
+------------------------------------------------------------------
+
+
+
+
+
+
+
+Enumeration
+Iterator
+ListIterator
+SplitIterator (jdk 1.8)
+
+Collections are mainly used for storing the data
+Streams are used for performing operations on collection data
+
+
+
+
+
+
+
+
+
+
+Movie.java
+----------
+
+private Integer movieId;
+private String producerName;
+private String directorName;
+private String movieName;   // null injection
+private String hero;
+private String heroine;
+
+
+<bean id="movie" class="com.tollywood.beans.Movie">
+		<constructor-arg name="movieId" value="103" />
+		<constructor-arg name="producerName" value="Ganesh" />
+		<constructor-arg name="directorName" value="Trivikram" />
+		<constructor-arg name="hero" value="Balayya" />
+		<constructor-arg name="heroine">
+			<null />
+		</constructor-arg>
+		<constructor-arg name="movieName">
+			<null />
+		</constructor-arg>
+	</bean>
+
+
+Note: In Constructor Injection, its mandatory that we need to inject values for all the variables.
+
+If we don't know value for a variable, then we shuld use null injection.
+
+
+<constructor-arg name="movieName">
+	<null />
+</constructor-arg>
+
+
+
+
+Bean Scopes
+-----------
+
+Bean Scope will decide how many objects should be created for a bean class in IOC container.
+
+//obj will be created
+Movie m1 = factory.getBean("movie",Movie.class); 
+
+//obj creation depends on bean scope
+Movie m2 = factory.getBean("movie",Movie.class);
+
+
+Spring supports below 4 types of scopes
+
+1) singleton  (by default)
+2) prototype
+3) request
+4) session 
+
+
+syntax : 
+-------
+
+<bean id="car" 
+      class="pkg.Car" 
+      scope="singleton|prototype|request|session" />
+
+
+Singleton : Only one object will be created.
+
+<bean id="car" class="pkg.Car" /> 
+<bean id="car" class="pkg.Car" scope="singleton"/>
+
+Prototype : For every call of getBean() method new object will be created.
+
+<bean id="car" class="pkg.Car" scope="prototype"/>
+
+
+
+
+
+
+
+BeanFactory factory = new XmlBeanFactory(resource);
+
+factory.getBean("movie",Movie.class); //obj will be created
+
+factory.getBean("movie",Movie.class); //
+
+
+
+
+<bean id="" class="" />
+
+singleton
+prototype
+request
+session
+
+
+
+
+
+
+
+BeanFactory
+-----------
+It is an interface
+It is used to start IOC Container
+IT is Lazy Container
+
+Why it is called as Lazy ? :: Until unless we call getBean( ) method bean object will not be created.
+
+how many objects should be created for a bean depends on bean scope.
+
+It doesn't support for I18N.
+It doesn't support for Event Handling
+It doesn't support for WebApplication Development.
+
+ApplicationContext
+------------------
+It is an interface
+It is also used to Start IOC Container
+It is Eager container
+
+Why it is Eager Container ? :: When IOC starts immediatley it will create bean objects if scope is singleton and lazy-init=false.
+
+It supports I18N
+It supports Event Handling
+It supports Web Application Development
+
+ApplicationContext ctx = 
+		new ClasspathXmlApplicationContext(String filePath)
+
+
+Note : scope attribute default value is singleton
+       lazy-init attribute default value is false.
+
+
+<bean id=""  class=""  scope="" lazy-init="true" />
+-----------------------------------------------------------------------
+
+
+Injecting Inner Beans
+---------------------
+One bean object can be injected to another bean in 2 ways
+
+
+1) Style-1  (Re-usability will be available)
+
+<bean id="a" class="pkg.Demo" />
+
+<bean id="b" class="pkg.Demo1">
+  <property name="a" ref="a"/>
+</bean>
+
+
+2) Stype-1 (No Re-Usability)
+
+<bean id="b" class="pkg.Demo1">
+  <property name="a">
+	<bean class="pkg.Demo" />
+  </property>
+</bean>
+
+Note : We can't create object for inner beans directly.
+
+Bean Inheritence
+----------------
+
+What is Inheritence?
+--------------------
+
+Extending Properties from one class to another class is called Inheritence.
+
+The main goal is re-usability.
+
+It is also called as IS-A relationship.
+
+
+Bean Inheritence
+----------------
+To copy properties from one bean to another bean we can use Bean Inheritence concept in Spring.
+
+
+
+Note: If property is not declared in child bean definition then only IOC will copy parent bean property value to child bean property.
+
+public class Car {
+   int id;
+   String name;
+   Double price;
+   String color;
+   String regNum;
+   //setters
+   //toString()
+}
+-----------------------------------------------------------------------
+<bean id="c1" class="pkg.Car">
+  <property name="id" value="101"/>
+  <property name="name" value="Swift" />
+  <property name="price" value="850000"/>
+  <property name="color" value="Red"/>
+  <property name="regNum" value="TG 27 ES 6868"/>
+</bean>
+
+
+<bean id="c2" class="pkg.Car" parent="c1">
+  <property name="id" value="102"/>
+ <property name="regNum" value="TG 27 ES 6862"/>
+</bean>
+
+<bean id="baseCar" class="com.maruthi.beans.Car" abstract="true">
+	<property name="name" value="Swift" />
+	<property name="price" value="850000" />
+	<property name="color" value="Red" />
+</bean>
+
+<bean id="c1" class="com.maruthi.beans.Car" parent="baseCar">
+ 	<property name="id" value="101" />
+	<property name="regNum" value="TG27 ES 6861" />
+</bean>
+----------------------------------------------------------------------
+-> It is recomended to configure base bean with common properties
+-> if we give abstract=true in bean definition , that bean definition will be abstract hence object will not be created.
+-> If we give abstract=true, class will not become abstract.
+
+
+Collection Merging
+------------------
+
+If we want to copy collection properties from one bean to another bean then we can use Collection Merging.
+
+Note: Collection Merging will work only in Bean Inheritence scenario.
+
+-----------------------------------------------------------------------
+
+Meeting : 
+
+id = 101
+name = Triage Meeting
+purpose = To discuss defects occured in UAT
+participants = john, Ram, Sita, Gita 
+
+
+Scrum Meetings
+
+Status Meetings
+
+Triage Meetings
+
+All Hands Meeting
+
+Manual Wiring
+------------
+Injecting dependent object into target object using ref attribute.
+
+
+AutoWiring
+----------
+
+IOC container can perform auto wiring.
+
+IOC can identify dependent object and it can inject into target object.
+
+By Default Autowiring will be in disable mode. If we want to use Autowiring, we should enable it.
+
+Autowiring should be enabled on Target Bean.
+
+syntax :  <bean id="" class="" autowire="byName|byType|constructor" />
+
+
+byName:
+-------
+
+With target class user-defined variable name there should be a bean in bean configuration file. Then that bean will be considered as dependent bean and it will be injected to target bean.
+
+If we don't have any bean defintion which is matching with target class user defined type variable then autowiring can't be performed.
+
+Note : IOC will check varibale name with bean id or bean name.
+
+
+byType:
+-------
+IOC will check user-defined varible data type with bean class in bean configuration file. If variable data type and Bean class is same then ioc consider that bean as dependent bean and it will inject that bean to target.
+
+Note : There is a possibility that one class can be configured with multiple bean definitions using unique ids. In this sitatuion IOC can't identify dependent bean hence it will throw Exception (NoUniqueBeanDefinitionFound).
+
+To resolve this we can use 'primary' attribute in bean defition. The bean which contains primary=true is called as auto-wire candidate.
+
+
+
+
+
+
+byName - variable name should match with bean name
+
+byType - variable data type should match with bean class
+
+constructor
+
+no ------------- > no auto-wiring
+
+
+
+<bean id="" class="" autowire="byName | byType | constructor" />
+
+
+
+
+
+
+
+
+
+constructor
+-----------
+
+
+
+
+
+
+Spring Core Basic Concepts
+==========================
+
+What is Spring
+Spring Advantages
+Spring Modules
+IOC 
+Dependency Injection
+Setter Injection
+Constructor Injection
+Setter Injections vs Constructor Injection
+BeanFactory
+ApplicationContext
+Injecting Inner Beans
+Collection Injection
+Bean Scopes
+Bean Inheritence
+Collection Merging
+Autowiring
+P & C namespaces
+Bean Aliasing
+Depends On
+Aware Interfaces
+Static Factory Method Instantiation
+Instance Factory Method Instantiation
+Nested Bean Factory
+Multiple Configuration Files
+Method Injections (Lookup method & Method Replacment)
+Bean Life Cycle
+Bean Post Processor
+Bean Factory Post Processor
+----------------------------------------------------------------------
+
+Spring Core Advanced Concepts
+=============================
+P and C namespaces
+Depends On
+Bean Aliasing
+Instance Factory Method Instantiation
+Static Factory Method Instanatiation
+LookUp Method Injection
+Method Replacement
+Bean Life Cycle
+Bean Post Processor
+Bean Factory Post Processor
+Property Editors
+Working with I 18 N
+Working with Multiple Bean Config Files
+
+
+Event Handling (pending)
+
+----------------------------------------------
+
+IOC 
+DI ( SI & CI )
+
+<bean id="" 
+      class="" 
+      scope=""
+      parent="" 
+      abstract="" 
+      lazy-init=""
+      autowire="" >
+
+	<property />
+	<constructor-arg />
+
+</bean>
+
+
+What is Spring Bean?
+-------------------
+The class whose life cycle is managing by IOC then that class is called as Spring Bean.
+
+
+<bean id="" 
+      class="" 
+      scope=""
+      parent="" 
+      abstract="" 
+      lazy-init=""
+      autowire="" >
+
+	<property name="" value or ref />
+	<constructor-arg />
+
+</bean>
+
+-----------------------------------------
+class Contact {
+
+  int contactId;
+  String contactName;
+  Long contactNumber;
+  Address addr;
+
+  //Setter methods
+  
+  //toString( )
+
+}
+----------------old approach---------------------------
+<beans <xsd linking> >
+<bean id="c" class="pkg.Contact">
+	<property name="contactId" value="101" />
+ 	<property name="contactName" value="Raj"/>
+	<property name="contactNumber" value="797979979"/>
+	<property name="addr" ref="a"/>
+</bean>
+</beans>
+---------------------using p-namespace-----------
+<beans xsd-linking  p-namespace-url >
+	
+   <bean id="c" class="pkg.Contact" 
+		p:contactId="101"  
+		p:contactName="Raj"
+		p:contactNumber="7797979" 
+		p:addr-ref = "a" />	
+<bean>
+=========================================================================
+<bean id="contact" class="com.pc.beans.Contact" 
+	p:id="101" p:name="Raj" 
+	p:number="9797979799" p:addr-ref="address" />
+
+	<bean id="address" class="com.pc.beans.Address" 
+	c:city="hyd" c:state="TG" c:country="India" />
+
+
+
+
+
+
+
+
+
+
+Depends-On
+----------
+
+class Car {
+
+   private Engine eng;
+
+}
+
+class Robot {
+  
+  private Chip chip;
+
+}
+-------------------------------------------------------------
+<bean id="c" class="pkg.Chip" />
+
+<bean id="r" class="pkg.Robot">
+   <property name="chip" ref="c"/>
+</bean>
+-------------------------------------------------
+
+
+
+<bean id="emiCalc" class="pkg.EmiCalculator" 
+	depends-on="cacheManager"/>
+
+
+
+
+Bean Aliasing
+=============
+
+<bean name="c1,c2 c3" class="com.maruthi.Car" />
+=========================================
+Car c1 = ctxt.getBean("c1",Car.class);
+
+
+
+
+
+
+Q)what is the difference between id and name attributes in bean tag?
+
+Using id we can configure only one value
+
+Using name we can configure more than one name
+
+Note : When we configure multiple names for a  bean using name attribute  space and comma will be considered as delimter.
+
+
+If you want write a bean name including comma or space then we should use alias tag.
+
+<alias name="res1" alias="res5," />
+
+------------------------------------------------------------------
+Amazon - E-Commerce
+BlueDart 
+
+
+
+
+
+
+
+
+
+
+Bean Life Cycle
+---------------
+
+To perform initialization and destruction operations for a Bean we can use bean life cycle.
+
+Like init operation and destroy operation.
+
+Bean life cycle we can achieve in below 3 ways
+----------------------------------------------
+1) Programmatic approach
+	- we need to implement 2 predefined interfaces of spring
+
+	   - IntializingBean- afterPropertiesSet()
+	   - DisposableBean- destroy()
+
+2) Declarative approach (xml)
+
+3) Annotation approach
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<bean id="e1" class="pkg.Engine" />
+
+
+<bean id="car1" class="pkg.Car">
+	<property name="eng" ref="e1"/>	
+</bean>
+<bean id="car2" class="pkg.Car">
+	<property name="eng" ref="e1"/>	
+</bean>
+---------------------------
+ctxt.getBean("e1",Engine.class); // valid
+ctxt.getBean("car",Car.class); // valid
+
+------------------------------------------------
+
+<bean id="c" class="pkg.Car">
+   <property name="eng">
+	<bean class="pkg.Engine" id="eng" />
+   </property>
+</bean>
+--------------------------------
+ctxt.getBean("eng",Engine.class);   //invalid
+ctxt.getBean("car",Car.class); // valid
+
+id and name attributes in bean tag.
+
+
+<bean id="p1" class="" />
+
+
+
+<bean name="p1,p2,p3 p4" class="" />
+
+<alias name="p1"  alias="p5," />
+------------------------------------------
+String[] names = ctxt.getAliases("p1");
+
+p2
+p3
+p4
+p5,
+
+
+
+Amazon  ---- > BlueDart ---- For cities delivery
+
+Amazon ----> DTDC ----- For Villages delivery
+
+
+if(zip>=500080) ---- City --- BlueDart obj
+
+if(zip < 500080 ) --- village ---- Dtdc obj
+
+
+amazon -- bluedart -- cities
+
+
+amazon -- dtdc -- villages
+
+
+
+
+
+
+
+
+
+Bean Aliasing
+-------------
+
+id vs name
+
+<bean id="car" class="" />
+
+<bean name="c1,c2,c3 c4" class="" />
+
+<alias name="c1" alias="c5," />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ApplicationContext
+------------------
+
+Alias tag in config file
+
+
+
+
+
+
+
+
+
+
+
+Aware Interfaces
+------------------
+This concept is also called as Interface Injection.
+
+Dependency Injection is performing through interface hence it is called as Interface iNjection.
+
+Ex : BeanFactoryAware and ApplicationContextAware etc...
+
+If we don't know which dependent object should be injected into target at compilation time then we can inject IOC to our target.
+
+If IOC is injected to our target class, then target class can decide which dependent object it should load in runtime based on conditions.
+
+
+BeanFactoryAware
+----------------
+
+class AmazonService implements BeanFactoryAware {
+
+private BeanFactory factory = null;
+
+public setBeanFactory(BeanFactory factory){
+	this.factory = factory;
+}
+	
+	//logic
+}
+
+
+Factory Methods
+---------------
+
+The method which is responsible to creat same or different class object is called as factory method.
+
+Factory methods can be classified into 2 types
+
+1) Static factory method
+
+	Connection con = DriverManager.getConnection(url,uname,pwd);
+	
+	Calendar c = Calendar.getInstance();
+
+2) Instance Factory Method
+		String msg = "hello";
+		String sub = msg.substr(0,3);
+
+		char ch = msg.charAt(0);
+
+
+
+
+
+class Car {
+
+}
+
+<bean id="c" class="pkg.Car" />
+--------------------------------------------
+
+<bean id="al" class="java.util.ArrayList" />
+
+-------------------------------------------
+
+<bean id="calc" class="java.util.Calendar" 
+		factory-method="getInstance" />
+
+
+Calendar c = Calendar.getInstance( ) ;
+
+================Static Factory method Instantiation================
+<bean id="cal"
+      class="java.util.Calendar" 
+      factory-method="getInstance" />
+===================================================================
+
+
+
+
+
+
+
+
+
+12-May-2019   +   57 = ?
+
+
+addDays(Date d, int days) {
+	cal.setTime(d);
+	cal.add(Calendar.DAY,days);
+	Date finalDate = cal.getTime();
+}
+
+new Date()
+
+
+String str = "10-May-2019" ;
+
+
+SimpleDateFormat
+----------------
+Date  parse(String str) -----> String to Date conversion
+
+String format(Date d) ------> Date to String Conversion
+
+
+
+Instance Factory Method Instantiation
+=====================================
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------
+
+I 18 N
+Property Editors
+Event Handling
+
+Spring Core Annotations
+
+
+Mutitple Configuration Fies
+---------------------------
+
+web components
+service components
+persistent components
+
+
+Method Injections
+-----------------
+
+1) LookUp method Injection : When we want to inject prototype bean into singleton bean
+
+2) Method Replacement : If we want to replace one method with another method in runtime.
+
+
+<bean id="t" class="pkg.Token" scope="prototype" />
+
+<bean id="tokenGenerator" class="pkg.TokenGenerator">
+	<property name="token" ref="t"/>
+</bean>
+----------------------------------------------------------------
+TokenGenerator tg = 
+	ctxt.getBean("tokenGenerator",TokenGenerator.class);
+
+	tg.getToken(); // 1234
+
+	tg.getToken( ); //1234
+
+
+
+
+
+
+
+
+
+<bean id="t" class="com.airtel.beans.Token" scope="prototype" />
+
+<bean id="tg" class="com.airtel.beans.TokenGenerator">
+     <property name="token" ref="t" />
+</bean>
+==========================================================
+<bean id="t" class="com.airtel.beans.Token" scope="prototype" />
+
+<bean id="tg" class="com.airtel.beans.TokenGenerator">
+    <lookup-method name="generateToken" />
+</bean>
+
+
+
+public abstract class TokenGenerator {
+	public abstract Token generateToken();
+}
+----------------------------------------------------
+public class TokenGenerator$Proxy extends TokenGenerator{
+
+	public Token generateToken(){
+		return new Token();
+	}
+}
+---------------------------------------------------------
+
+
+<bean id="c" class="pkg.Car" />
+
+
+Car c1 =  ctxt.getBean("c",Car.class);
+
+sysout(c1.getClass().getName()); //pkg.Car
+
+
+
+
+
+
+
+
+
+<bean id="tg" class="pkg.TokenGenerator">
+</bean>
+
+TokenGenerator tg = ctxt.getBean("tg", TokenGenerator.class);
+sysout(tg.getClass().getName()); //pkg.TokenGenerator
+=============================================================
+<bean id="t" class="pkg.Token" />
+<bean id="tg" class="pkg.TokenGenerator">
+	<lookup-method name="generateToken" />
+</bean>
+
+TokenGenerator tg = ctxt.getBean("tg", TokenGenerator.class);
+
+sysout(tg.getClass().getName()); //pkg.TokenGenerator$Proxy
+
+
+
+
+
+
+
+Bean Life Cycle
+---------------
+
+To perform some operation for a bean post initialization and 
+pre-destruction then we can use Bean Life Cycle.
+
+Post Initialization : object Creation and initialing values to obj
+
+Pre Destruction : Before removing object from IOC.
+
+In below 3 ways we can achieve bean life cycle
+===============================================
+1) Programmatic approach
+	 - We need to implement 2 interfaces
+
+		- InitializingBean -> afterPropertiesSet( )
+		- DisposableBean -> destroy( )
+
+In this approach our bean class is implementing 2 predefined spring interfaces hence we are loosing non-invasiveness of our project.
+
+In this situation our project classes are tightly coupled with spring framework dependencies.
+
+To avoid this problem, we can go for Declarative appoach
+
+	
+2) Declarative approach - xml approach
+---------------------------------------
+- > In this approach we no need to implement any interfaces.
+
+-> To execute post initialization and pre-destruction logic we can write in user defined methods.
+
+	m1() - after properties set logic
+	m2() - pre destruction  logic
+
+
+	<bean id="motor" class="pkg.Motor" 
+			init-method="m1"
+			destroy-method="m2" />
+
+
+
+Bean Life Cycle is applicable for only one bean.
+
+Bean Post Processor is appliable for all beans in IOC.
+
+Bean Post Processor will execute after bean instantiation and before bean initialization.
+
+Note 1: ApplicationContext can recognize BeanPostProcessor automatically and will register those.
+
+Note 2: BeanFactory can't recognize BeanPostProcessor automatically so we need to register BeanPostProcessor with BeanFactory.
+
+
+
+
+
+
+
+
+
+
+
+3) Annotation approach
+------------------------
+
+--> First ioc will create object
+
+--> IOC will inject dependencies if any presented
+
+--> IOC will call afterPropertiesSet( ) method
+
+
+
+
+
+BeanPostProcessor
+------------------
+This is used to execute some common logic for all beans before initialization and after initialization.
+
+
+BeanFactory can't recognize BeanPostProcessor automatically where as ApplicationCOntext can recognize BeanPostProcessors.
+
+BeanFactoryPostProcessor
+------------------------
+This is used to modify ioc container metadata.
+
+FactoryPostProcessor will execute after beans are loaded and before instantiation of beans.
+
+<bean id="cm" class="pkg.ConnectionManager">
+	<property name="url" value="${url}" />
+	<property name="uname" value="${uname}" />
+	<property name="pwd" value="${pwd}" />
+	<property name="driverCls" value="${driverCls}" />
+</bean>
+-------------------------------------------------------
+
+we have so many predefind BeanFactoryPostProcessor classes in spring
+
+one is PropertyPlaceholderConfigurer
+
+
+
+
+
+BeanFactoryPostProcessor :- After Beans are loaded and before Instantiation BFP will execute. 
+
+PropertyPlaceholderConfigurer
+
+Ex : loading values from Properties file.
+
+BeanPostProcessor:- AFter Bean Instantiation and before Initialization
+BPP will execute.
+
+Bean Life Cycle : After Initialization and Before Destruction .
+Internationalization (I 18 N)
+----------------------------
+
+
+Locale : It represents one geographic location.
+
+Locale l = Locale.getDefaultLocale(); // US_EN
+
+US - country code
+EN - language code
+
+Property Editors
+----------------
+
+public class Movie {
+
+	Integer id;
+	String name;
+	Double ticketPrice;
+	
+	//setter methods	
+}
+<bean id="m" class="pkg.Movie">
+	<property name="id" value="101"/>-- setId(101);
+	<property name="name" value="Titanic"/> -- setName("Titanic")
+	<property name="ticketPrice" value="350.00"/>
+					--setTicketPrice(350.00);
+</bean>
+
+
+
+
+
+
+PropertyEditors
+-----------------
+
+Locale : One Geographic location
+
+
+languageCode_CountryCode
+
+Locale l = new Locale("hi","IN"); // hindi locale
+
+hi_IN
+-----------------------------------------------------------------
+Resource Bundles
+
+key=value
+------baseName.properties----------------
+key=value
+--------baseName_langCd_CountryCode.properties----------
+
+
+<bean id="messageSource" class="pkg.ResourceBundleMessageSource">
+
+	<property name="baseName" value="messages"/>
+</bean>
+
+---------------------------------------------------------------
+
+ctxt.getMessage(key,new Object[]{"Raju"},Locale.GERMANY);
+
+
+
+
+
+
+
+Property Editors
+----------------
+
+Property Editors are used to convert values to corresponding data types.
+
+
+  private Integer age; // setAge(Integer age)
+
+<property name="age" value="50" /> --- NumberPropertyEditor
+
+  private Double price; // setPrice(Double price)
+
+<property name="price" value="500.89" /> - DecimalPropertyEditor
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public void setNums(Numbers nums){
+	//logic
+}
+
+setNums(new Numbers()); // valid
+
+setNums(10,20) ; //in-valid
+----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

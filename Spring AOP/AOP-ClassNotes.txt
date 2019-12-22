@@ -1,0 +1,329 @@
+Spring AOP
+==========
+
+-> Aspect oriented Programming
+
+-> It is used to seperate primary logic and secondary logics in project.
+
+  Primary Logic : Business logic
+  Secondary Logic  : Supporting logic
+
+
+
+public class Bank{
+
+   public void deposit(){
+	//logging
+	//tx
+	//security
+	//auditing
+	   //logic
+	//auditing
+	//logging
+   }
+
+   public void withdraw(){
+	//logging
+	//tx
+	//security
+	//auditing
+	   //logic
+	//auditing
+	//logging
+   }
+}
+
+In above approach primary and secondary logics are combined which is not recommended. Both are tightly coupled.
+
+To maintain loosely coupling we have to seperate them into multiple classes.
+
+Using AOP we can achieve loosely coupling between primary and seconday components.
+
+
+AOP Terminology
+================
+Aspect
+Advice
+JoinPoint
+PointCut
+Target
+Weaving
+Proxy
+
+Aspect : Secondary Logic Component is called as Aspect. Aspect represents only name of the component but it doesnot how it is going to execute in runtime.
+
+Ex  : Logger, Security, Tx etc...
+
+Advice: Advice is the implementation of Aspect. Advice represents how Aspect should execute in runtime.
+
+We can use below Advice types in Aspects
+
+	1) Before Advice
+	2) After Returning Advice
+	3) Around Advice
+	4) Throws Advice
+
+Target : Target represents business component (primary logic class)
+
+JoinPoint : It represents where target and aspect logics will be combined. (Spring AOP supports only Method Level JoinPoint).
+
+PointCut: Pointcut defines for which methods of target advice logic should be applied.
+
+Weaving: The process of integrating target and aspect at join point is called as weaving.
+
+The Result of weaving is called proxy.
+
+
+
+
+
+
+
+We can work with AOP in below ways
+---------------------------------
+
+1) Programmatic approach
+
+2) Declarative approach (xml)
+
+3) Annotation approach 
+
+
+Programmatic Approach - Before Advice
+-------------------------------------
+
+1) If we want to execute seconday logic before primary logic then we can go for Before advice.
+
+2) To work with Before advice, we should create an advice class by implementing MethodBeforeAdvice interface. In this interface we have below abstract method.
+
+
+   public void before(Method m, Object[] args, Object target)
+
+  Method -> represents target class method
+ 
+  Object[] -> represents target class method parameters
+
+  Object -> represents target class object
+
+
+3) We can modify target class method parameter values in before advice. They will reflect in target cls method execution.
+
+4) If exception occured in before advice then controll will not go to target class logic.
+
+5) Once target cls method execution completed, controll will not come back to before advice.
+
+Note: in before advice we can't controll target method return value.
+
+
+
+SalaryCalculator -----> Logging (As a Before Advice)
+
+
+
+
+After Returning Advice
+----------------------
+If we want to execute secondary logic after target method returned the value then we can go for After Returning Advice.
+
+To work with AfterReturningAdvice we should implement AfterReturningAdvice interface.
+
+ public void afterReturning(Object ret,Method m,
+					Object[] args ,Object t)
+
+ 
+1st param ----> Target cls method return value
+
+2nd Param ----> java.lang.reflect.Method (for method info)
+
+3rd param ---> Target cls method parameters
+
+4th param  ---> target cls object
+
+
+-> We can watch target method return value but we can't change it.
+
+-> We can access target method parameters (no use of changing)
+
+-> We don't have any control over target cls method execution because after target method completed control coming to after-returning-advice.
+
+Around Advice (before and after)
+-----------------------------------
+If we want to execute secondary logic before target class method and after target class method then we can go for Around Advice.
+
+Use cases : logging, method execution time calculation, user session time calculation etc.
+
+-> To work with AroundAdvice we need to implement MethodInterceptor interface.
+
+-> We need to override invoke() method
+
+	public Object invoke(MethodInvocation invocation)
+
+-> Inside invoke() method we should call proceed() method to give control to target cls method.
+
+Note: If we don't call proceed() then target method will not be executed.
+
+-> proceed method return type is Object which represents target class method return value.
+
+-> In Around Advice, we can modify target method parameters and return value also.
+
+
+Throws Advice
+--------------
+To execute seconday logic when exception occurs in target class methods then we can go for Throws Advice.
+
+Note: Throws Advice not for handling exceptions. It is used to monitor the exception and perform some secondary operation.
+
+Ex: Global Exception Handling, Sending Exception Emails etc.
+
+public class ExceptionAdvisor implements ThrowsAdvice{
+
+public void afterThrowing(Method m,Object[] args, 
+					Object obj, Exception ex){
+	
+	//print exception details
+	//send exception details to email
+}
+
+
+}
+
+
+
+Aspect
+Advice
+   - Before advice
+   - After Returning Advice
+   - Around Advice (proceed())
+   - Throws Advice
+JoinPoint
+Target
+Weaving
+Proxy
+PointCut
+
+
+PointCut
+---------
+When we apply advice to a target, then it applies for all methods available in target class.
+
+Target class methods ==>  Demo (m1() & m2(int i) & m2 (String) )
+
+If We want to apply advice for only specific methods in target class then we have to use PointCut.
+
+Def: Pointcut is used to specify for which methods in target class advice logic should apply.
+
+We can create Pointcut in below 2 ways
+======================================
+1) Static PointCut : We can check methodName, target class Type
+
+	-- > NameMatchMethodPointCut (I)
+		- boolean matches(Method m,Class target)
+
+2) Dynamic PointCut : We can check methodName, targetClassType and methodArgs types.
+		
+	-- > DynamicMethodMatcherPointCut
+		 - boolean matches(Method m, Class t, Object... args)
+
+
+--> To add pointcut to proxyfactory we should use below syntax
+
+   Advisor adv = new DefaultPointCutAdvisor(pointCut,Advice advice)
+   proxyFactory.addAdvisor(adv);	
+   
+
+
+
+
+
+
+
+
+Aspect J Annotations
+---------------------
+
+@Before
+@AfterReturning
+@Around
+@Throws
+@Pointcut
+
+
+
+
+
+
+
+
+@Pointcut(value = "execution(* com.mc.beans.*.*(..))")
+public void pce() {
+
+}
+
+"execution(* com.nit.beans.Calculator.*(..))--
+
+"execution(* com.nit.beans.Calculator.add(..))-
+
+
+* *.*.*(..)
+
+1st star ---> returntype
+
+2nd star ---> package name
+
+3rd star ---> class name
+
+4th start ---> methodName
+
+.. ---> Method parameters
+
+
+
+
+
+@PointCut(value="execution(* com.nit.beans.ReportGenerator.*(..)))
+public void pce(){
+
+}
+
+
+public void monitor(JoinPoint jp) {
+	String methodName = jp.getSignature().getName();
+	Monitor.increment(methodName);
+}
+
+
+
+
+
+
+
+
+
+Primary components
+---------------------
+Controller
+Service
+Dao 
+
+
+Secondary Components (cross-cutting logic)
+-------------------------------------------
+Tx
+logging
+auditing
+security
+exception mapping
+request processing time calculation etc....
+
+
+
+
+
+
+
+
+
+
+
+
+

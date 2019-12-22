@@ -1,0 +1,188 @@
+Drawbacks Of Spring 
+-------------------
+1) Lot of configuration required
+    WebComponents Config file
+    Service Components Config File
+    Dao components Config File
+    Aop Components Config File
+    Web.xml file
+
+Above configuration we have to do using xml or using annotations
+
+2) Lot of dependencies we have to configure in pom.xml file
+
+3) Spring applications has to be deployed into 3 party servers.
+
+4) No support for application statistics checking like heapdump, threaddump, configProps etc...
+
+
+
+Spring Boot
+===========
+It is not a framework
+
+It is not a module
+
+Spring boot is just an approach to develop spring based application with minimal or less configurations.
+
+-> Spring Boot provided auto-configuration
+
+-> Spring boot provider starter-poms
+
+-> Spring boot provided embedded http servers
+			 - tomcat
+		 	 - jetty
+-> Spring Boot provided production ready features
+
+
+Spring Boot available in 2 versions
+
+1.x (1.5.14)
+
+2.x (2.1.15)
+
+Using spring boot, we can develop java or kotlin or groovy based apps.
+
+
+
+
+
+
+Spring MVC
+
+Spring Boot 
+
+
+application.properties
+----------------------
+server.port=9090
+server.servlet.context-path=/SBWebApp
+
+#view-resolver config
+
+spring.mvc.view.prefix=/views/
+spring.mvc.view.suffix=.jsp
+
+
+ORM properties
+
+DB config properties
+
+log4jConfiguration
+
+SMTP configuration 
+
+
+application.yml file
+---------------------
+
+indent spaces plays very important role in yml file.
+
+
+
+
+
+
+
+
+
+Working with Profiles in Spring Boot
+------------------------------------
+
+
+Application Environments
+------------------------
+DEV - - application-dev.yml
+QA  --- application-qa.yml
+UAT  -- application-uat.yml
+Pilot -- application-pilot.yml
+PROD -- application-prod.yml
+
+
+
+
+
+@Configuration
+@EnableConfigurationProperties
+@ConfigurationProperties(prefix="his")
+@Data
+public class AppProperties{
+
+	private Map<String,String> props = 
+		new HashMap<String,String>();
+
+
+
+}
+
+
+
+
+@Autowired
+private AppProperties appProps;
+
+String value = appProps.getProps().get(key);
+
+
+spring.active.profile=dev
+------------------------------
+spring:
+   active:
+	profile: dev
+
+
+
+
+
+
+
+
+
+Spring Boot Actuators
+---------------------
+Spring Boot Actuators are used to provide Production Ready Features for an application.
+
+checking health of project
+
+checking heapdump
+
+checking threaddump
+
+checking configProps
+
+checkings beans
+
+checking url-patterns etc...
+
+
+
+MAT - Memory Anayalyzer Tool
+
+
+In SPring Boot 2.x version /actuator is mandatory in URL
+
+By default all endpoints are enabled but only health and info are exposed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

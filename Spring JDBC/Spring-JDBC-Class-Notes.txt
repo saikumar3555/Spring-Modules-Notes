@@ -1,0 +1,366 @@
+JDBC 
+-----
+
+JDBC is an api which is used communicate with Database using java applications.
+
+JDBC api is partial (Only interfaces are available no implementation)
+
+Using only JDBC api we can't communicate with Database.
+
+Along with JDBC api we need implementation to communicate with database.
+
+All database vendors available in market, provided implementation for jdbc api.
+
+
+java + jdbc api + jdbc impl ====> Database
+
+Oracle implementation available in ojdbc14.jar file
+
+MySQL implementaiton available in mysql-connector.jar file.
+
+1) Boiler plate code
+
+2) Every line of jdbc code will throw SQLException
+
+3) JDBC will deal with native sql queries (DB Dependent)
+
+4) No cache support
+
+5) No Relationships support (Association Mapping)
+
+6) No DDL Support
+
+7) No support for primary key generation
+
+8) No in-built connection pooling
+
+
+
+
+
+
+By Using Spring JDBC module we can develop persistence layer in project.
+
+Persistence layer : Which is used to communicate with Database. It is as called as Dao layer.
+
+Spring JDBC resolved below 2 drawbacks of jdbc.
+-----------------------------------------------
+1) Boiler plate code
+
+2) ExceptionHandling
+
+Note: Spring JDBC is not replacement for java jdbc. Spring JDBC is developed on top of java jdbc.
+
+java app ---> Spring jdbc ---> jdbc api --> jdbc impl --->  DB
+
+Who does what
+-------------
+1) Load driver -- No
+2) Get connection--- No
+3) Prepare Query-- Yes
+4) Create stmt/pstmt objects -- No
+5) set parameters for query-- Yes
+6) execute query-- No
+7) Process results-- Yes
+8) Close conection-- No
+
+
+Spring JDBC provided predefind classes to simplify persistence logic
+-------------------------------------------------------------------
+1) JdbcTemplate
+
+2) NamedParameterJdbcTemplate
+
+3) SimpleJdbcInsert
+
+4) SimpleJdbcCall
+
+
+
+
+
+
+@Autowired
+JdbcTemplate jt;
+
+
+jt.update("insert into emp_dtls values(?,?,?,),101,"raj",1000.00);
+
+
+
+
+
+
+1) Configure Datasource bean with DB Config details
+		 - DriverClas
+		 - Url
+		 - Uname
+		 - Pwd
+
+	<bean id="ds" class="pkg.DriverManagerDS">
+		- driverCls
+		- url
+		- uname
+		- pwd
+	</bean>
+
+2) Configure JdbcTemplate bean by injecting dataSource
+	
+	<bean id="jt" class="pkg.JdbcTemplate">
+		<propert name="dataSource" ref="ds"/>
+	</bean>
+	
+4) Configure Dao class as bean by injecting JdbcTemplate
+
+	<bean id="bookDao" class="pkg.BookDtlsDao">
+	   <property name="jdbcTemplate" ref="jt"/>
+	</bean>
+
+
+5) Calling JdbcTemplate class methods to perform DB operations.
+
+update(String sql,Object... args) : To perform non-select operations.
+
+Non Select Operations : Insert, Update and Delete
+
+Best practises in DAO
+=====================
+1) For Every table create seperate Dao 
+
+2) Create Dao interface and provide Implementation for dao
+
+3) Write common sql queries at the class level 
+
+
+
+Select Operations
+-----------------
+To perform Select operations JdbcTemplate class provided several methods.
+
+queryForMap(sql)-- to retrieve single record
+queryForList(sql)-- to retrieve more than one record
+
+queryForObject(sql) -- to retrieve single record in object format
+query()-- to retrieve multiple records in object format
+
+
+
+
+
+DS --- > JT --> DAO 
+
+
+
+Non-select operations : Insert, update, delete
+
+Method :  int  update(String sql, Object... args)
+
+Select Operations : projection and selection
+
+
+Projection represents which columns we want to retrieve 
+(instead of * we need to specify column names in sql query)
+
+Selection represents which rows we need to retrieve (where clause)
+
+
+Map<String,Object>  queryForMap(String sql, Object... args)
+
+List<Map<String,Object>> queryForList(String sql,Object.... args)
+
+
+
+
+
+
+
+
+
+
+RowMapper : It is an interface which is used to map every row of resultset to java object.
+
+ResultSetExtractor : It is also an interface which is used to extract the data from ResultSet.
+
+
+
+inserting - update
+
+jdbcTemplate.update(sql,...)l
+
+updating - update
+delete - update
+
+queryForMap -- for single record in key value format
+
+queryForList -- more than one record in key-value format
+
+queryForObject -- one record in java obj format
+
+RowMapper -- TO convert ResultSet data to java obj
+
+ResultSetExtractor -- to get data from ResultSet obj
+
+
+public boolean insertWithPstmt(BookDTO dto) {
+
+int cnt = jt.update(INSERT_SQL, new PreparedStatementSetter() {
+
+@Override
+public void setValues(PreparedStatement pstmt) throws SQLException {
+	pstmt.setInt(1, dto.getBookId());
+	pstmt.setString(2, dto.getBookName());
+	pstmt.setDouble(3, dto.getPrice());
+	pstmt.setString(4, dto.getIsbn());
+	pstmt.setString(5, dto.getAuthorName());
+    }
+});
+	return true;
+}
+
+
+
+
+
+
+
+
+
+Batch Operations in JdbcTemplate
+--------------------------------
+batch operations are used to perform bulk operations on table.
+
+Ex : inserting 100 records at a time.
+
+
+
+
+
+
+
+
+Non-select operations : update
+
+Select operations: queryForMap,queryForList,queryForObject, query
+
+Batch Operations: batchUpdate
+
+ds will be injected to --> jt  will be injected to --> dao
+Limitations in JdbcTemplate
+===========================
+
+
+1) JdbcTemplate will support only positional parameters in queries
+
+  Ex  : insert into user_master values(?,?,?)
+
+2) Query readability is decreased
+
+3) Programmers has to remember order to set values for positional parameters.
+
+
+
+To overcome these drawbacks of JdbcTemplate, spring jdbc provided
+NamedParameterJdbcTemplate class.
+
+NamedParameterJdbcTemplate will support for NamedPositionalParameters
+in sql queries.
+
+NamedPostional Parameters will improve readability of queries.
+
+Named params : insert into product_Dtls values(:pid,:pname,:pprice);
+
+positional parms:   insert into product_Dtls values(?,?,?);
+
+
+
+
+
+
+
+
+JdbcTemplate
+NamedParameterJdbcTemplate
+SimpleJdbcInsert
+
+SimpleJdbcCall - > It is used to call stored procedures
+
+What is Procedure?
+------------------
+It contains set of sql stmts to perform complex business logic in Database.
+
+
+<procedure-name>
+
+<parameters-part>
+
+<logic-part>
+
+<end-part>
+
+
+
+
+
+
+
+
+
+
+
+
+create or replace procedure GET_PLAYER_NAME_BY_ID
+(
+ pid in number,
+ pname out VARCHAR
+)
+is
+begin
+
+select player_name into pname 
+from cricket_players where player_id=pid;
+
+end GET_PLAYER_NAME_BY_ID;
+
+
+
+
+DriverManagerDataSource
+------------------------
+JdbcTemplate
+NamedParameterJdbcTemplate
+SimpleJdbcInsert
+SimpleJdbcCall
+--------------
+RowMapper
+ResultSetExtractor
+BatchPreparedStatementSetter
+-----------------------------
+update
+queryForMap
+queryForList
+queryForObject
+query
+batchUpdate
+execute
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

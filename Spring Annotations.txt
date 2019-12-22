@@ -1,0 +1,349 @@
+What is Annotation ?
+-------------------
+Annotations are used to provide metadata.
+
+Metadata - data about the data is called metadata.
+
+
+JSE
+---
+@Override
+@SupressWarnings
+@Deprecated
+
+
+@Target
+@RententionPolicy
+
+
+@FunctionalInterface.....
+
+JEE
+---
+@WebServlet
+@WebFilter
+@Listener etc...
+
+JSP - Annotations are not applicable
+
+EJB - @SessionBean - @Transactional  @ManagedBean @LocalBean etc..
+
+Hibernate - 
+-----------
+@Entity
+@Table
+@Id
+@Column
+@OneToMany @OneToOne  @ManyToOne  @ManyToMany @JoinColumn etc...
+
+
+Spring Annotations
+------------------
+@Required
+@Autowired
+@Qualifier
+@Bean
+@Scope
+@DependsOn
+
+@PostConstruct
+@PreDestroy
+
+@Component
+
+@Named
+@Inject
+
+@Configuration
+
+
+Spring MVC Annotations
+-----------------------
+@Controller
+@RestController
+@RequestMapping
+@RequestBody
+@ResponseBody
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@Component : To make class as spring bean
+
+@Value : To inject value to variable
+
+@Autowired : To inject dependent object into target object
+
+@PostConstruct : To execute init logic for a bean
+
+@PreDestroy : To execute pre-destroy logic for a bean.
+
+@DependsOn : To specify one bean is in-directly dependent on another bean.
+
+@Configuration : To make java class as configuration class. It serves as replacement for xml configuration.
+
+@ComponentScan(basePackages={"pkg1","pkg2"...} : It is used to scan packages to identify bean classes based on stereo-type annotations.
+
+@Controller : To make java class as Spring Controller (Request handler)
+
+@RestController: To make java class as distributed component. It is used for B2B communication.
+
+@Service: To represent class as Spring bean. It is used for business components.
+
+@Repository : To represent class as Spring Bean. It is used for persistence layer.
+
+Develop Spring application to read data from csv file and store data in Database table.
+
+
+
+
+
+CSV (Comma seperated values)
+-----------------------------------------
+101,Spring,1000.00,Rod Johnson
+102,Hibernate,850.00,Gaven King
+103,Restful Services,1200.00,Roy Fielding
+-------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+1) Create Dao class to insert a record into table.
+	public boolean saveBook(Book book);
+
+2) Create Service class to interact Dao class
+	public void saveBooks(List<Book> books) ;
+
+3) Create AppConfig class for Component Scanning
+
+4) Create Main class to start ioc and read data from File and call Service layer method by passsing books as a input for service class method.
+		
+		     @Configuration
+Beans.xml ------->   AppConfig.java
+
+
+<bean id="" class="" />  ---> @Component @Service @Repository
+
+@ComponentScan( basePackages= {"com.ies"} )
+
+@Autowired
+
+
+
+
+
+
+
+
+
+
+
+Document / Workbook
+
+Workbook book = new HssfWorkBook();
+
+Sheet
+
+Sheet sheet = book.createSheetAt(0);
+
+Row
+	Row row = sheet.createRow(0);
+Cell
+	Cell cell0  = row.createCell(0);
+
+Set value to the cell
+	cell0.setCellValue("101");
+
+
+
+
+
+FileInputStream fis = new FileInputStream("Users.xls");
+HssfWorkbook  book = new HssfWorkbook( );
+Sheet sheet = book.getSheetAt(0);
+Iterator<Row> rowIterator = sheet.rowIterator();
+
+while(rowIterator.hasNext()){
+	Row currentRow = rowIterator.next( );
+	Iterator<Cell> cellIterator = currentRow.cellIterator( );
+	
+	while(cellIterator.hasNext( )){
+	    Cell currentCell = cellIterator.next ( );
+		
+		currentCell.getStringCellValue();
+	}
+}
+
+
+
+
+
+
+
+
+
+
+WorkBook
+Sheet
+Row
+Cell
+
+
+
+Workbook book = new HssfWorkbook();
+
+Sheet sheet = book.createSheet("Sname");
+
+Row headerRow = sheet.createRow(0);
+
+headerRow.createCell(0).setCellValue("S.No");
+headerRow.createCell(1).setCellValue("Name");
+headerRow.createCell(2).setCellValue("Email");
+
+
+Row dataRow1 = sheet.createRow(1)
+dataRow1.createCell(0).setcellValue("");
+...
+		
+
+
+FileInputStream fis = new FileInputStream("file.xls");
+
+Workbook book = new HssfWorkBook(fis);
+
+Iterator<Sheet> sheets = book.sheetIterator( );
+
+while(sheets.hasNext()){
+	Sheet sheet = sheets.next ( );
+	
+	Iterator<Row> rows = sheet.rowIterator () ;
+
+	while(rows.hasNext( )) {
+		Row row = rows.next ( );
+
+		Iterator<Cell> cells = row.cellIterator( ) ;
+
+		while(cells.hasNext( )) {
+			Cell cell = cells.next( ) ;
+		}
+	}
+
+}
+
+
+
+
+
+book id :   1  to 5 chars
+
+book name:  6  to 15 chars
+
+book price: 16 to 22 chars
+
+
+12345spring   200.00
+101  hibernate25
+
+
+
+@Configuration
+@ComponentScan(basePackages="com.nit")
+
+@Component
+@Controller
+@RestController
+@Service
+@Repository
+
+@Autowired(required=true|false)
+@DependsOn
+@Bean
+@Scope
+@Value
+@PropertySource(value={"DbConfig.properties","smtp.properties"})
+
+
+
+
+@Component is class level annotation
+@Component will be processed as part of component-scanning
+When class contains @Component, spring will take care of instantiation
+
+
+@Bean is method level annotation.
+If we want to create object with custom initialization then we will go for @Bean annotation.
+
+@Bean annotated methods will be available in Configuration class
+
+@Bean annotated methods will be called bt IOC after component scanning.
+
+
+
+Types of IOC
+------------
+IOC is a principle which is used to manage and colloborate dependencies among objects in application.
+
+
+1) Dependency Injection 
+	 - Setter Injection
+	 - Constructor Injection
+
+
+
+2) Dependency Pull
+	 - Dependency lookup
+	 - Contextual Dependency pull
+
+-----------------------------------------------
+public class MsgServlet implements Servlet{
+
+	public void init(ServletConfig config){
+		/// logic
+	}
+
+	public void service(SR req, SR res){
+		//logic
+	}
+
+	public void destroy(){
+		//logic
+	}
+	
+	public String getServletInfo(){
+		return "";
+	}
+
+	public ServletConfig getServletConfig(){
+		return config;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

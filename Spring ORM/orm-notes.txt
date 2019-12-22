@@ -1,0 +1,296 @@
+Spring ORM
+----------
+ORM - Object relational mapping
+
+Which is used to develop persistence layer in project.
+
+jdbc ----> text data
+
+spring jdbc ---> text data
+
+Hibernate ---> Objects data
+
+Configuration
+SessionFactory
+Session
+Tx
+
+----------------------------------------
+
+Spring ORM is implemented on top of existing orm frameworks.
+
+Spring with Hibernate Integration
+---------------------------------
+1) Create Entity Class (Map java class with DB table)
+
+2) Configure DataSource Bean with DB config details
+
+3) Configure SessionFactory Bean and inject below properties
+		- dataSource
+		- mapping files or mapped classes
+		- hibernate properties
+
+4) Configure TxManager as a bean and inject sessionFactory into txManager.
+
+5)Configure HibernateTemplate as a bean and inject sessionFactory into HibernateTemplate.
+
+6) Inject HibernateTemplate into dao beans.
+
+--------------------------------------------------------------------
+Entity : The java class which is mapped with DB table is called as ENtity class.
+
+we can do mapping in below 2 ways
+
+1) xml mapping (hbm) - OUTDATED
+
+2) annotations
+
+@Entity
+@Table
+@Id
+@Column
+@GeneratedValue
+
+DB_Table : BOOK_DTLS
+COLUMN NAMES: BOOK_ID, BOOK_NAME , BOOK_PRICE
+
+@Data
+@Entity
+@Table("BOOK_DTLS)
+public class BookDtlsEntity{
+	
+	@Id
+	@GeneratedValue
+	@Column(name="BOOK_ID")
+	private Integer bookId;
+	
+	@Column(name="BOOK_NAME")
+	private String bookName;
+
+	@Column(name="BOOK_PRICE")
+	private Double bookPrice;
+}
+
+
+2)Configure DataSource bean with DB config details
+---------------------------------------------------
+
+<context:property-placeholder location="classpath:DB.properties" />
+
+<bean id="ds" class="pkg.DriverManagerDataSource">
+	<property name="driverClassName" value="${db.driver}" />
+	<property name="url" value="${db.url}" />
+	<property name="username" value="${db.username}" />
+	<property name="password" value="${db.password}" />
+</bean>
+
+
+3) Configure SessionFactory bean
+--------------------------------
+<bean id="sf"  class="pkg.LocalSessionFactoryBean">
+	<property name="dataSource" ref="ds" />
+	<property name="annotatedClasses">
+	  <list>
+	    <value>com.aits.entity.Emp</value>
+	  </list>
+	</property>
+	<property name="hibernateProperties">
+	  <props>
+	     <prop key="hibernate.show_sql">true</prop>
+	     <prop key="hibernate.hbm2ddl.auto">update</prop>
+	  </props>
+	</property>
+</bean>
+
+4)Configure TxManager and inject sessionFactory into that
+---------------------------------------------------------
+<tx:annotation-driven transaction-manager="transactionManager" />
+
+<bean id="transactionManager" 				class="pkg.HibernateTransactionManager">
+	<property name="sessionFactory" ref="sf" />
+</bean>
+
+5)Configure HibernateTemplate and inject sessionFactory
+-------------------------------------------------------
+
+<bean id="ht" class="pkg.HibernateTemplate">
+	<property name="sessionFactory" ref="sf" />
+</bean>
+
+6) Inject HibernateTemplate into dao classes
+---------------------------------------------
+<bean id="bookDao" class="pkg.BookDao">
+	<property name="hibTemplate" ref="ht"/>
+</bean>
+
+
+ThreadLocal<Integer> i = new ThreadLocal();
+
+i.set(10);
+
+i.get();
+
+i.remove(); //highly recommended
+
+
+
+
+
+
+
+
+
+
+
+
+
+Transaction management
+======================
+
+What is transaction?
+--------------------
+The unit amount of work we are doing is called as transaction.
+
+Every Transaction can be classified into 2 types
+
+1) Successful transaction: If all operations in that transaction are successful then it can be consided as successful transaction.
+
+2) Failure transaction: If any one operation is failed in the transaction then it is called as failure transaction.
+
+
+We have to decide when to commit and when to rollback.
+
+commit : storing data permanently in database.
+
+rollback: reverting data back to previous state.
+
+
+Whenever we perform non-select operation with database, we should commit our transaction otherwise data will not be stored permanently in database.
+
+JDBC : setAutoCommit(true);
+
+Hibernate: setAutoCommit(false);
+
+
+If we are using hibernate for persistent operations, programmer is responsible to manage transactions with database.
+
+To manage transactions, we should know transaction properties.
+--------------------------------------------------------------
+ACID properties
+
+A - atomicity : Either all or none
+
+C- consistency: Should not effect other tx
+
+I - isolation: Individual
+
+D - durability : Permanent
+
+
+In Applications we can see 2 types of transactions
+--------------------------------------------------
+1) Global transactions (App server) multiple resources will be involved like message queues, jndi, persistent layer
+
+2) local transactions (specific to persistent layer)
+
+We can manage transactions in below 3 ways
+-------------------------------------------
+1) Programmatic approach: 
+
+2) Declarative approach: In xml config file, we will specify for which methods transaction should be applied.
+
+3) Annotation approach : We will use @Transactional(readOnly=true/false) annotation.
+
+Note: By default @Transactional(readOnly=true)
+
+Note: For DB select operations transactions are not required. For DB non-select operations (insert, update, delete) trasactions are mandatory.
+
+read-only
+read-write
+isolation
+new or propagation
+phanton-read
+dirty-read
+
+Locking
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Declarative Tx Management
+--------------------------
+
+- > We can manage transactions using xml configuration in aop style.
+
+
+
+<tx:advice id="txAdvice" transaction-manager="transactionManager">
+      <tx:attributes>
+       <tx:method name="create"></tx:method>
+      </tx:attributes>
+</tx:advice>
+     
+ <aop:config>
+     <aop:pointcut 
+         expression="execution(* pkg.EmployeeDaoImpl.create(..))" 					id="createOperation">
+    </aop:pointcut>
+    
+ <aop:advisor advice-ref="txAdvice"
+		 pointcut-ref="createOperation">
+ </aop:advisor>
+
+</aop:config>
+
+
+
+
+
+emp table
+emp_dept table
+
+
+HibernateTemplate
+
+
+
+
+
+
+
+
+
+
